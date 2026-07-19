@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Nest — подбираем квартиры и дома в Москве. Один брокер от первого звонка до ключей."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#111318" />
+    <title>Nest — Находим жильё, в котором хочется остаться</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Nest — Находим жильё, в котором хочется остаться" />
+    <meta
+      property="og:description"
+      content="Подбираем квартиры и дома в сильных районах Москвы. Один брокер — от звонка до ключей."
+    />
+    <meta property="og:image" content="assets/images/hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nest — жильё в Москве без стресса" />
+    <meta name="twitter:description" content="Shortlist за 48 часов. Один брокер до ключей." />
+    <meta name="twitter:image" content="assets/images/hero.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C9A66B'/><path d='M16 7l9 7v11H7V14l9-7z' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#top" data-i18n="skip">К содержимому</a>
+    <div class="page-progress" aria-hidden="true">
+      <span class="page-progress__bar" id="page-progress-bar"></span>
+    </div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5z" />
+      </svg>
+    </div>
+    <div class="cursor-label" id="cursor-label" aria-hidden="true">Смотреть</div>
+    <div class="site-shell">
+      <header class="header" id="header">
+        <div class="header__inner">
+          <a href="#top" class="logo" aria-label="Nest — на главную">
+            <span class="logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5z" />
+              </svg>
+            </span>
+            Nest
+          </a>
+
+          <nav class="nav" id="nav" aria-label="Основная навигация">
+            <a class="nav__link is-active" href="#top"><span class="nav__dot" aria-hidden="true"></span><span data-i18n="nav.home">Главная</span></a>
+            <a class="nav__link" href="#properties" data-i18n="nav.properties">Объекты</a>
+            <a class="nav__link" href="#districts" data-i18n="nav.districts">Районы</a>
+            <a class="nav__link" href="#why" data-i18n="nav.about">О нас</a>
+            <a class="nav__link" href="#faq" data-i18n="nav.faq">FAQ</a>
+            <a class="nav__link" href="#contact" data-i18n="nav.contact">Контакты</a>
+            <div class="nav__mobile-cta">
+              <a class="header__phone" href="tel:+74950184729">+7 (495) 018-47-29</a>
+              <a class="btn btn--primary" href="#contact" data-i18n="cta.find">Подобрать жильё</a>
+              <button class="btn btn--ghost" type="button" data-open-quiz data-i18n="cta.quiz">Пройти квиз</button>
+            </div>
+          </nav>
+
+          <div class="header__actions">
+            <div class="lang-toggle" role="group" aria-label="Language">
+              <button type="button" class="lang-toggle__btn is-active" data-lang-set="ru" aria-pressed="true">RU</button>
+              <button type="button" class="lang-toggle__btn" data-lang-set="en" aria-pressed="false">EN</button>
+            </div>
+            <a class="header__phone-pill" href="tel:+74950184729" aria-label="Позвонить" data-i18n-aria="aria.call">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <button class="header__link-btn" type="button" data-open-quiz data-i18n="cta.quizShort">Квиз</button>
+            <a class="header__cta-text" href="#contact" data-i18n="cta.find">Подобрать жильё</a>
+            <button class="menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню">
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main id="top">
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero__media" aria-hidden="true">
+            <img src="assets/images/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
+            <div class="hero__overlay"></div>
+          </div>
+
+          <div class="hero__main">
+            <div class="hero__content">
+              <h1 class="hero__title" id="hero-title" data-i18n="hero.title">
+                Находим жильё, в&nbsp;котором хочется остаться
+              </h1>
+              <p class="hero__subtitle" data-i18n="hero.sub">
+                Квартиры и дома в сильных районах Москвы. Один брокер — до ключей.
+              </p>
+
+              <div class="hero__actions">
+                <a class="btn btn--light" href="#properties" data-i18n="search.submit">Смотреть объекты</a>
+                <a class="btn btn--ghost-light" href="#contact" data-i18n="cta.find">Начать поиск</a>
+              </div>
+
+              <div class="search-panel">
+                <form class="search-form" action="#properties" method="get" role="search" aria-label="Поиск жилья">
+                  <div class="search-field">
+                    <div class="search-field__body">
+                      <label for="location" data-i18n="search.district">Район</label>
+                      <select id="location" name="location">
+                        <option value="" data-i18n="search.anyDistrict">Любой район</option>
+                        <option value="center" data-i18n="search.center">Центр</option>
+                        <option value="west" data-i18n="search.west">Запад</option>
+                        <option value="north" data-i18n="search.north">Север</option>
+                        <option value="south" data-i18n="search.south">Юг</option>
+                        <option value="east" data-i18n="search.east">Восток</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="search-field">
+                    <div class="search-field__body">
+                      <label for="type" data-i18n="search.type">Тип</label>
+                      <select id="type" name="type">
+                        <option value="" data-i18n="search.anyType">Все типы</option>
+                        <option value="apartment" data-i18n="search.apartment">Квартира</option>
+                        <option value="house" data-i18n="search.house">Дом</option>
+                        <option value="newbuild" data-i18n="search.newbuild">Новостройка</option>
+                        <option value="penthouse" data-i18n="search.penthouse">Пентхаус</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="search-field">
+                    <div class="search-field__body">
+                      <label for="price" data-i18n="search.budget">Бюджет</label>
+                      <select id="price" name="price">
+                        <option value="" data-i18n="search.anyBudget">Любой</option>
+                        <option value="10" data-i18n="search.p10">до 10 млн ₽</option>
+                        <option value="20" data-i18n="search.p20">10–20 млн ₽</option>
+                        <option value="40" data-i18n="search.p40">20–40 млн ₽</option>
+                        <option value="40plus" data-i18n="search.p40p">от 40 млн ₽</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn btn--search" type="submit" data-i18n="search.submit">Найти</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__stats" id="stats" aria-label="Ключевые показатели">
+            <div class="container">
+              <div class="stats-bar">
+                <div class="stats-bar__item">
+                  <div class="stats-bar__value"><span class="js-count" data-target="450" data-suffix="+">0</span></div>
+                  <div class="stats-bar__label" data-i18n="stats.s1">объектов в работе</div>
+                </div>
+                <div class="stats-bar__item">
+                  <div class="stats-bar__value"><span class="js-count" data-target="1200" data-suffix="+">0</span></div>
+                  <div class="stats-bar__label" data-i18n="stats.s2">семей уже с ключами</div>
+                </div>
+                <div class="stats-bar__item">
+                  <div class="stats-bar__value"><span class="js-count" data-target="98" data-suffix="%">0</span></div>
+                  <div class="stats-bar__label" data-i18n="stats.s3">сделок доводим до конца</div>
+                </div>
+                <div class="stats-bar__item">
+                  <div class="stats-bar__value"><span class="js-count" data-target="15">0</span></div>
+                  <div class="stats-bar__label" data-i18n="stats.s4">лет на рынке Москвы</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a class="hero__scroll" href="#properties" aria-label="Дальше">
+            <span class="hero__scroll-line" aria-hidden="true"></span>
+          </a>
+        </section>
+
+        <!-- PROPERTIES -->
+        <section class="properties section" id="properties" aria-labelledby="properties-title">
+          <div class="container">
+            <div class="properties__head">
+              <div class="section-head">
+                <p class="eyebrow" data-i18n="prop.eyebrow">Каталог</p>
+                <h2 class="section-title" id="properties-title" data-i18n="prop.title">Что смотрят прямо сейчас</h2>
+                <p class="section-lead" data-i18n="prop.lead">
+                  Актуальные варианты из нашей базы: проверенные документы,
+                  понятные планировки и цена без «украшений» в объявлении.
+                </p>
+              </div>
+              <div class="properties__actions">
+                <span class="filter-bar__count" id="filter-count" data-i18n-count>4 объекта</span>
+                <a class="btn btn--primary" href="#contact" data-i18n="prop.request">Запросить подборку</a>
+                <button class="btn btn--text" type="button" data-open-quiz data-i18n="prop.quiz">Подобрать за 1 мин</button>
+              </div>
+            </div>
+
+            <div class="filter-bar" id="filter-bar" aria-live="polite">
+              <div id="filter-chips"></div>
+              <a href="#properties" class="filter-bar__reset" id="filter-reset" hidden data-i18n="prop.reset">Сбросить</a>
+            </div>
+
+            <div class="properties-empty" id="properties-empty" role="status">
+              <h3 data-i18n="prop.emptyTitle">По этим фильтрам объектов нет</h3>
+              <p data-i18n="prop.emptyText">Сбросьте фильтры или оставьте заявку — подберём варианты под ваш запрос.</p>
+              <a class="btn btn--primary" href="#contact" data-i18n="prop.emptyCta">Оставить заявку на подбор</a>
+            </div>
+
+            <div class="property-grid">
+              <a
+                class="property-card property-card--featured reveal"
+                href="properties/property-1.html"
+                data-id="p1"
+                data-location="center"
+                data-type="apartment newbuild"
+                data-price="18.9"
+              >
+                <div class="property-card__media">
+                  <img src="assets/images/property-1.jpg" alt="Светлая кухня-гостиная в современном доме" width="800" height="600" loading="lazy" />
+                  <span class="property-card__badge" data-i18n="card.p1.badge">Новостройка</span>
+                  <button type="button" class="property-card__fav" data-fav="p1" aria-label="В избранное" data-i18n-aria="prop.fav" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                  </button>
+                  <div class="property-card__overlay">
+                    <span class="property-card__cta">
+                      <span data-i18n="prop.more">Подробнее</span>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="property-card__body">
+                  <div class="property-card__top">
+                    <p class="property-card__loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Хамовники
+                    </p>
+                    <div class="property-card__price">
+                      <span class="property-card__price-num">18,9</span>
+                      <span class="property-card__price-unit" data-i18n="meta.mln">млн ₽</span>
+                      <span class="property-card__price-m2" data-i18n="card.p1.m2">≈ 278 тыс. ₽/м²</span>
+                    </div>
+                  </div>
+                  <h3 class="property-card__title" data-i18n="card.p1.title">2-комн. с видовой кухней</h3>
+                  <p class="property-card__desc" data-i18n="card.p1.desc">Хамовники · 12 мин пешком до метро</p>
+                  <div class="property-card__meta">
+                    <span><strong>2</strong> <span data-i18n="meta.rooms">комн.</span></span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>68</strong> м²</span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>14</strong> <span data-i18n="meta.floor">этаж</span></span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                class="property-card reveal"
+                href="properties/property-2.html"
+                data-id="p2"
+                data-location="center"
+                data-type="penthouse apartment"
+                data-price="42.5"
+              >
+                <div class="property-card__media">
+                  <img src="assets/images/property-2.jpg" alt="Спальня пентхауса с панорамными окнами" width="800" height="600" loading="lazy" />
+                  <span class="property-card__badge property-card__badge--accent" data-i18n="card.p2.badge">Пентхаус</span>
+                  <button type="button" class="property-card__fav" data-fav="p2" aria-label="В избранное" data-i18n-aria="prop.fav" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                  </button>
+                  <div class="property-card__overlay">
+                    <span class="property-card__cta">
+                      <span data-i18n="prop.more">Подробнее</span>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="property-card__body">
+                  <div class="property-card__top">
+                    <p class="property-card__loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Пресненский
+                    </p>
+                    <div class="property-card__price">
+                      <span class="property-card__price-num">42,5</span>
+                      <span class="property-card__price-unit" data-i18n="meta.mln">млн ₽</span>
+                      <span class="property-card__price-m2" data-i18n="card.p2.m2">≈ 343 тыс. ₽/м²</span>
+                    </div>
+                  </div>
+                  <h3 class="property-card__title" data-i18n="card.p2.title">Пентхаус 124 м² с видом на Сити</h3>
+                  <p class="property-card__desc" data-i18n="card.p2.desc">Пресненский · 28 этаж · 2 паркинга</p>
+                  <div class="property-card__meta">
+                    <span><strong>3</strong> <span data-i18n="meta.rooms">комн.</span></span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>124</strong> м²</span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>28</strong> <span data-i18n="meta.floor">этаж</span></span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                class="property-card reveal"
+                href="properties/property-3.html"
+                data-id="p3"
+                data-location="west"
+                data-type="apartment"
+                data-price="24.2"
+              >
+                <div class="property-card__media">
+                  <img src="assets/images/property-3.jpg" alt="Гостиная с панорамными окнами" width="800" height="600" loading="lazy" />
+                  <span class="property-card__badge" data-i18n="card.p3.badge">Готово к въезду</span>
+                  <button type="button" class="property-card__fav" data-fav="p3" aria-label="В избранное" data-i18n-aria="prop.fav" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                  </button>
+                  <div class="property-card__overlay">
+                    <span class="property-card__cta">
+                      <span data-i18n="prop.more">Подробнее</span>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="property-card__body">
+                  <div class="property-card__top">
+                    <p class="property-card__loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Раменки
+                    </p>
+                    <div class="property-card__price">
+                      <span class="property-card__price-num">24,2</span>
+                      <span class="property-card__price-unit" data-i18n="meta.mln">млн ₽</span>
+                      <span class="property-card__price-m2" data-i18n="card.p3.m2">≈ 263 тыс. ₽/м²</span>
+                    </div>
+                  </div>
+                  <h3 class="property-card__title" data-i18n="card.p3.title">3-комн. у парка, можно въезжать</h3>
+                  <p class="property-card__desc" data-i18n="card.p3.desc">Раменки · мебель и техника на месте</p>
+                  <div class="property-card__meta">
+                    <span><strong>3</strong> <span data-i18n="meta.rooms">комн.</span></span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>92</strong> м²</span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>7</strong> <span data-i18n="meta.floor">этаж</span></span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                class="property-card reveal"
+                href="properties/property-4.html"
+                data-id="p4"
+                data-location="west"
+                data-type="house"
+                data-price="56.0"
+              >
+                <div class="property-card__media">
+                  <img src="assets/images/property-4.jpg" alt="Современный таунхаус" width="800" height="600" loading="lazy" />
+                  <span class="property-card__badge" data-i18n="card.p4.badge">Дом</span>
+                  <button type="button" class="property-card__fav" data-fav="p4" aria-label="В избранное" data-i18n-aria="prop.fav" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                  </button>
+                  <div class="property-card__overlay">
+                    <span class="property-card__cta">
+                      <span data-i18n="prop.more">Подробнее</span>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="property-card__body">
+                  <div class="property-card__top">
+                    <p class="property-card__loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Сколково
+                    </p>
+                    <div class="property-card__price">
+                      <span class="property-card__price-num">56,0</span>
+                      <span class="property-card__price-unit" data-i18n="meta.mln">млн ₽</span>
+                      <span class="property-card__price-m2" data-i18n="card.p4.m2">≈ 333 тыс. ₽/м²</span>
+                    </div>
+                  </div>
+                  <h3 class="property-card__title" data-i18n="card.p4.title">Таунхаус 168 м² + двор 4 сот.</h3>
+                  <p class="property-card__desc" data-i18n="card.p4.desc">Сколково · охраняемый посёлок</p>
+                  <div class="property-card__meta">
+                    <span><strong>4</strong> <span data-i18n="meta.rooms">комн.</span></span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>168</strong> м²</span>
+                    <span class="meta-dot" aria-hidden="true"></span>
+                    <span><strong>4</strong> <span data-i18n="meta.sot">сот.</span></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="properties__closed reveal">
+              <div>
+                <h3 data-i18n="prop.closedTitle">Есть объекты не в открытом доступе</h3>
+                <p data-i18n="prop.closedText">Закрытые продажи, off-market и варианты «до рынка». Опишите запрос — пришлём 5–7 релевантных адресов за 48 часов.</p>
+              </div>
+              <a class="btn btn--light" href="#contact" data-i18n="prop.closedCta">Запросить закрытую подборку</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- DISTRICTS -->
+        <section class="districts section" id="districts" aria-labelledby="districts-title">
+          <div class="container">
+            <div class="section-head section-head--center reveal">
+              <p class="eyebrow" data-i18n="districts.eyebrow">Районы</p>
+              <h2 class="section-title" id="districts-title" data-i18n="districts.title">Где ищем чаще всего</h2>
+              <p class="section-lead" data-i18n="districts.lead">
+                Не «вся Москва», а сильные локации с понятной ликвидностью, школами и повседневной жизнью.
+              </p>
+            </div>
+            <div class="districts-grid">
+              <article class="district-card district-card--tall reveal">
+                <div class="district-card__media">
+                  <img src="assets/images/property-1.jpg" alt="" loading="lazy" width="640" height="480" />
+                </div>
+                <div class="district-card__body">
+                  <h3 class="district-card__name">Хамовники</h3>
+                  <p class="district-card__for" data-i18n="districts.d1.for">Для тех, кто хочет центр без суеты Тверской: парки, школы, статусная вторичка и новостройки.</p>
+                  <p class="district-card__price" data-i18n="districts.d1.price">от 18 млн ₽ · 2-комн.</p>
+                  <a class="district-card__cta" href="#properties" data-filter-location="center" data-prefill-message="Интересует Хамовники" data-i18n="districts.view">Смотреть объекты →</a>
+                </div>
+              </article>
+              <article class="district-card reveal">
+                <div class="district-card__media">
+                  <img src="assets/images/property-2.jpg" alt="" loading="lazy" width="640" height="400" />
+                </div>
+                <div class="district-card__body">
+                  <h3 class="district-card__name">Пресненский</h3>
+                  <p class="district-card__for" data-i18n="districts.d2.for">Сити, набережная, бизнес и жизнь в одном контуре. Пентхаусы и видовые этажи.</p>
+                  <p class="district-card__price" data-i18n="districts.d2.price">от 35 млн ₽ · видовые</p>
+                  <a class="district-card__cta" href="#properties" data-filter-location="center" data-prefill-message="Интересует Пресненский / Сити" data-i18n="districts.view">Смотреть объекты →</a>
+                </div>
+              </article>
+              <article class="district-card reveal">
+                <div class="district-card__media">
+                  <img src="assets/images/property-3.jpg" alt="" loading="lazy" width="640" height="400" />
+                </div>
+                <div class="district-card__body">
+                  <h3 class="district-card__name">Раменки</h3>
+                  <p class="district-card__for" data-i18n="districts.d3.for">Семьи: парк, школы, метро. Много «можно въезжать» с ремонтом.</p>
+                  <p class="district-card__price" data-i18n="districts.d3.price">от 20 млн ₽ · 3-комн.</p>
+                  <a class="district-card__cta" href="#properties" data-filter-location="west" data-prefill-message="Интересуют Раменки, семья" data-i18n="districts.view">Смотреть объекты →</a>
+                </div>
+              </article>
+              <article class="district-card district-card--wide reveal">
+                <div class="district-card__media">
+                  <img src="assets/images/property-4.jpg" alt="" loading="lazy" width="800" height="420" />
+                </div>
+                <div class="district-card__body">
+                  <h3 class="district-card__name">Сколково</h3>
+                  <p class="district-card__for" data-i18n="districts.d4.for">Дома и таунхаусы: двор, тишина, охрана. Для тех, кто вырос из квартиры.</p>
+                  <p class="district-card__price" data-i18n="districts.d4.price">от 45 млн ₽ · таунхаус</p>
+                  <a class="district-card__cta" href="#properties" data-filter-location="west" data-prefill-message="Интересует Сколково, дом/таунхаус" data-i18n="districts.view">Смотреть объекты →</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHY — editorial typography (Wacomet-style) -->
+        <section class="why section" id="why" aria-labelledby="why-title">
+          <div class="container why-layout">
+            <div class="why-intro reveal">
+              <p class="why-intro__label">
+                <span class="why-intro__dash" aria-hidden="true">—</span>
+                <span data-i18n="why.eyebrow">Почему Nest</span>
+              </p>
+              <h2 class="why-intro__title" id="why-title">
+                <span data-i18n="why.title1">Покупка без</span>
+                <span data-i18n="why.title2">лишнего</span><br />
+                <span data-i18n="why.title3">стресса</span>
+              </h2>
+              <p class="why-intro__lead" data-i18n="why.lead">
+                Мы берём на себя проверку, переговоры и бумажную работу.
+                Вы выбираете дом, а не разбираетесь в хаосе рынка.
+              </p>
+            </div>
+
+            <ol class="why-list" id="why-list">
+              <li class="why-item">
+                <span class="why-item__num" aria-hidden="true">01</span>
+                <div class="why-item__body">
+                  <h3 data-i18n="why.t1">Сначала документы, потом показ</h3>
+                  <p data-i18n="why.p1">Юрист проверяет объект до вашей поездки. Сюрпризы в ЕГРН и «серые» схемы отсекаем сами.</p>
+                </div>
+              </li>
+              <li class="why-item why-item--accent">
+                <span class="why-item__num" aria-hidden="true">02</span>
+                <div class="why-item__body">
+                  <h3 data-i18n="why.t2">Короткий список, а не лента</h3>
+                  <p data-i18n="why.p2">За 48 часов — 5–7 релевантных вариантов с честными плюсами и минусами.</p>
+                </div>
+              </li>
+              <li class="why-item">
+                <span class="why-item__num" aria-hidden="true">03</span>
+                <div class="why-item__body">
+                  <h3 data-i18n="why.t3">Один человек — от звонка до ключей</h3>
+                  <p data-i18n="why.p3">Ваш брокер знает бюджет, район и то, что для вас действительно важно.</p>
+                </div>
+              </li>
+              <li class="why-item">
+                <span class="why-item__num" aria-hidden="true">04</span>
+                <div class="why-item__body">
+                  <h3 data-i18n="why.t4">Сопровождаем до регистрации</h3>
+                  <p data-i18n="why.p4">Торг, договор, ипотека, Росреестр. Не пропадаем после задатка.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- PROCESS — bold columns (FACTURE-style) -->
+        <section class="process section" id="process" aria-labelledby="process-title">
+          <div class="container">
+            <header class="process-head reveal">
+              <p class="process-head__label">
+                <span class="process-head__dash" aria-hidden="true">—</span>
+                <span data-i18n="process.eyebrow">Как это устроено</span>
+              </p>
+              <h2 class="process-head__title" id="process-title" data-i18n="process.title">Четыре шага до ключей</h2>
+              <p class="process-head__lead" data-i18n="process.lead">
+                Прозрачный процесс. Вы всегда понимаете, на каком этапе сделка и что происходит дальше.
+              </p>
+            </header>
+
+            <div class="process-stage" id="process-stage">
+              <ol class="process-cols" id="process-cols">
+                <li class="process-col" data-step="0">
+                  <span class="process-col__digit" aria-hidden="true">1</span>
+                  <div class="process-col__meta">
+                    <span class="process-col__step" data-i18n="process.step1">Шаг 01</span>
+                    <h3 data-i18n="process.t1">Уточняем задачу</h3>
+                    <p data-i18n="process.p1">Созваниваемся на 15–20 минут: бюджет, район, сроки и жёсткие «нельзя».</p>
+                  </div>
+                </li>
+                <li class="process-col" data-step="1">
+                  <span class="process-col__digit" aria-hidden="true">2</span>
+                  <div class="process-col__meta">
+                    <span class="process-col__step" data-i18n="process.step2">Шаг 02</span>
+                    <h3 data-i18n="process.t2">Собираем shortlist</h3>
+                    <p data-i18n="process.p2">Отбираем объекты, проверяем документы и присылаем подборку с комментариями брокера.</p>
+                  </div>
+                </li>
+                <li class="process-col" data-step="2">
+                  <span class="process-col__digit" aria-hidden="true">3</span>
+                  <div class="process-col__meta">
+                    <span class="process-col__step" data-i18n="process.step3">Шаг 03</span>
+                    <h3 data-i18n="process.t3">Смотрим вместе</h3>
+                    <p data-i18n="process.p3">Организуем показы. Сравниваем свет, шум, двор — то, чего нет на фото.</p>
+                  </div>
+                </li>
+                <li class="process-col process-col--accent" data-step="3">
+                  <span class="process-col__digit" aria-hidden="true">4</span>
+                  <div class="process-col__meta">
+                    <span class="process-col__step" data-i18n="process.step4">Шаг 04</span>
+                    <h3 data-i18n="process.t4">Закрываем сделку</h3>
+                    <p data-i18n="process.p4">Ведём переговоры, готовим договор и сопровождаем до ключей и регистрации.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- MORTGAGE + FAQ — split panel (ref layout) -->
+        <section class="answers section" id="mortgage" aria-labelledby="answers-title">
+          <div class="container">
+            <div class="answers-split reveal">
+              <div class="answers-split__media">
+                <img
+                  src="assets/images/mortgage-side.jpg"
+                  alt=""
+                  width="1200"
+                  height="1400"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="answers-split__caption">
+                  <h2 class="answers-split__title" id="answers-title">
+                    <span class="answers-split__dash" aria-hidden="true">—</span>
+                    <span data-i18n="answers.title1">Ипотека и ответы</span><br />
+                    <span data-i18n="answers.title2">на главные вопросы</span>
+                  </h2>
+                </div>
+              </div>
+
+              <div class="answers-split__panel">
+                <div class="answers-calc">
+                  <p class="answers-calc__eyebrow" data-i18n="mortgage.eyebrow">Ипотека</p>
+                  <h3 class="answers-calc__title" data-i18n="mortgage.title">Рассчитайте ежемесячный платёж</h3>
+
+                  <div class="answers-calc__form">
+                    <div class="mortgage__field">
+                      <label for="m-price">
+                        <span data-i18n="mortgage.price">Стоимость жилья</span>
+                        <span id="m-price-val">25.0 млн ₽</span>
+                      </label>
+                      <input type="range" id="m-price" min="8" max="80" step="0.5" value="25" />
+                    </div>
+                    <div class="mortgage__field">
+                      <label for="m-down">
+                        <span data-i18n="mortgage.down">Первоначальный взнос</span>
+                        <span id="m-down-val">20%</span>
+                      </label>
+                      <input type="range" id="m-down" min="10" max="60" step="1" value="20" />
+                    </div>
+                    <div class="mortgage__field">
+                      <label for="m-years">
+                        <span data-i18n="mortgage.years">Срок кредита</span>
+                        <span id="m-years-val">20 лет</span>
+                      </label>
+                      <input type="range" id="m-years" min="5" max="30" step="1" value="20" />
+                    </div>
+                    <div class="mortgage__field">
+                      <label for="m-rate">
+                        <span data-i18n="mortgage.rate">Процентная ставка</span>
+                        <span id="m-rate-val">16.0%</span>
+                      </label>
+                      <input type="range" id="m-rate" min="6" max="22" step="0.1" value="16" />
+                    </div>
+                  </div>
+
+                  <div class="answers-calc__actions">
+                    <button type="button" class="btn btn--primary" id="m-calc-btn" data-i18n="mortgage.calc">
+                      Рассчитать
+                    </button>
+                    <div class="answers-calc__result" id="m-result">
+                      <span class="answers-calc__from" data-i18n="mortgage.from">от</span>
+                      <p class="answers-calc__value" id="m-payment">—</p>
+                    </div>
+                  </div>
+                  <p class="answers-calc__note" data-i18n="mortgage.note">
+                    Оценка по аннуитету — не оферта банка. Реальная ставка зависит от программы и объекта.
+                  </p>
+                </div>
+
+                <div class="answers-divider" aria-hidden="true"></div>
+
+                <div class="answers-faq" id="faq">
+                  <h3 class="answers-faq__title" data-i18n="faq.title">Частые вопросы</h3>
+                  <div class="faq-list">
+                    <div class="faq-item">
+                      <button type="button" class="faq-item__q" aria-expanded="false" id="faq-q1" aria-controls="faq-a1">
+                        <span data-i18n="faq.q1">Можно ли рассмотреть объект без первого взноса?</span>
+                        <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                      </button>
+                      <div class="faq-item__a" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                        <div class="faq-item__a-inner" data-i18n="faq.a1">
+                          Да — обсудим программы с минимальным взносом, субсидии и сценарии «взнос позже». На старте честно скажем, какие объекты реалистичны без ПВ и где банк откажет.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button type="button" class="faq-item__q" aria-expanded="false" id="faq-q2" aria-controls="faq-a2">
+                        <span data-i18n="faq.q2">Вы работаете только с новостройками?</span>
+                        <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                      </button>
+                      <div class="faq-item__a" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                        <div class="faq-item__a-inner" data-i18n="faq.a2">
+                          Нет. Новостройки, вторичка, апартаменты, таунхаусы и дома — если объект подходит под ваш запрос и проходит проверку документов.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button type="button" class="faq-item__q" aria-expanded="false" id="faq-q3" aria-controls="faq-a3">
+                        <span data-i18n="faq.q3">Сколько времени занимает подбор?</span>
+                        <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                      </button>
+                      <div class="faq-item__a" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                        <div class="faq-item__a-inner" data-i18n="faq.a3">
+                          Первый shortlist — обычно за 48 часов после брифа. Сделка в среднем 2–6 недель: зависит от рынка, ипотеки и того, насколько чётко сформулирован «нельзя».
+                        </div>
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button type="button" class="faq-item__q" aria-expanded="false" id="faq-q4" aria-controls="faq-a4">
+                        <span data-i18n="faq.q4">Помогаете с одобрением ипотеки?</span>
+                        <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                      </button>
+                      <div class="faq-item__a" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                        <div class="faq-item__a-inner" data-i18n="faq.a4">
+                          Да: пакет документов, выбор банка под объект, семейная / IT / стандартная ипотека. Следим, чтобы одобрение не «сгорело» из‑за неподходящего дома.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button type="button" class="faq-item__q" aria-expanded="false" id="faq-q5" aria-controls="faq-a5">
+                        <span data-i18n="faq.q5">Что входит в сопровождение сделки?</span>
+                        <span class="faq-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                      </button>
+                      <div class="faq-item__a" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                        <div class="faq-item__a-inner" data-i18n="faq.a5">
+                          Торг, проверка документов, договор, задаток, ипотека, Росреестр и передача ключей. Вы принимаете решения — мы ведём процесс и держим сроки.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- REVIEWS — two-column (reference layout) -->
+        <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
+          <div class="container">
+            <div class="reviews-split reveal">
+              <div class="reviews-split__left">
+                <p class="eyebrow" data-i18n="reviews.eyebrow">Отзывы клиентов</p>
+                <h2 class="section-title" id="reviews-title">
+                  <span data-i18n="reviews.title1">Реальные истории.</span><br />
+                  <span data-i18n="reviews.title2">Без приукрашивания.</span>
+                </h2>
+                <p class="section-lead reviews-split__lead" data-i18n="reviews.lead">
+                  Клиенты, которые уже получили ключи. Честные отзывы после сделки.
+                </p>
+                <div class="reviews-split__actions">
+                  <a class="btn btn--primary" href="#contact" data-i18n="reviews.ctaPrimary">Оставить заявку</a>
+                  <a class="btn btn--ghost" href="#reviews-list" data-i18n="reviews.ctaSecondary">Все отзывы</a>
+                </div>
+                <div class="reviews-split__social">
+                  <div class="reviews-split__stars" aria-label="5 из 5">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </div>
+                  <div class="reviews-split__avatars" aria-hidden="true">
+                    <img src="assets/images/avatar-2.jpg" alt="" width="40" height="40" loading="lazy" />
+                    <img src="assets/images/avatar-1.jpg" alt="" width="40" height="40" loading="lazy" />
+                    <img src="assets/images/avatar-3.jpg" alt="" width="40" height="40" loading="lazy" />
+                  </div>
+                  <p class="reviews-split__rating" data-i18n="reviews.ratingLabel">4.9 · на основе отзывов клиентов</p>
+                </div>
+              </div>
+
+              <div class="reviews-split__right" id="reviews-list">
+                <div class="reviews-marquee" aria-label="Лента отзывов">
+                  <div class="reviews-marquee__track">
+                    <div class="reviews-marquee__group">
+                      <article class="review-card review-card--feed">
+                        <div class="review-card__head">
+                          <img class="review-card__avatar" src="assets/images/avatar-2.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <div class="review-card__who">
+                            <div class="review-card__name">
+                              Анна Ковалёва
+                              <span class="review-card__sep">·</span>
+                              <span data-i18n="reviews.r1">Квартира в Раменках</span>
+                            </div>
+                            <div class="review-card__time" data-i18n="reviews.time1">2 недели назад</div>
+                          </div>
+                        </div>
+                        <p class="review-card__text" data-i18n="reviews.t1">
+                          Полгода сами смотрели объявления — устали от хаоса. С Nest за
+                          две недели вышли на квартиру, где наконец спокойно спим.
+                        </p>
+                        <div class="review-card__stars" aria-label="5 из 5 звёзд">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                      </article>
+
+                      <article class="review-card review-card--feed">
+                        <div class="review-card__head">
+                          <img class="review-card__avatar" src="assets/images/avatar-1.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <div class="review-card__who">
+                            <div class="review-card__name">
+                              Дмитрий Орлов
+                              <span class="review-card__sep">·</span>
+                              <span data-i18n="reviews.r2">Таунхаус в Сколково</span>
+                            </div>
+                            <div class="review-card__time" data-i18n="reviews.time2">3 недели назад</div>
+                          </div>
+                        </div>
+                        <p class="review-card__text" data-i18n="reviews.t2">
+                          Брокер с первого звонка зафиксировал: школа, парковка, двор
+                          без машин. Не торопил с решением — это редкость.
+                        </p>
+                        <div class="review-card__stars" aria-label="5 из 5 звёзд">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                      </article>
+
+                      <article class="review-card review-card--feed">
+                        <div class="review-card__head">
+                          <img class="review-card__avatar" src="assets/images/avatar-3.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <div class="review-card__who">
+                            <div class="review-card__name">
+                              Елена Морозова
+                              <span class="review-card__sep">·</span>
+                              <span data-i18n="reviews.r3">Пентхаус, Пресненский</span>
+                            </div>
+                            <div class="review-card__time" data-i18n="reviews.time3">1 месяц назад</div>
+                          </div>
+                        </div>
+                        <p class="review-card__text" data-i18n="reviews.t3">
+                          Документы разобрали до задатка, ипотека прошла без сюрпризов.
+                          Чувствуется, что сделками такого уровня занимаются постоянно.
+                        </p>
+                        <div class="review-card__stars" aria-label="5 из 5 звёзд">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-lead" id="contact" aria-labelledby="cta-title">
+          <div class="container">
+            <div class="cta-lead__grid">
+              <div class="cta-lead__form-wrap">
+                <p class="eyebrow" data-i18n="contact.eyebrow">Заявка</p>
+                <h2 class="section-title" id="cta-title" data-i18n="contact.title">Оставьте контакты — подберём первые варианты</h2>
+                <p class="section-lead cta-lead__text" data-i18n="contact.lead">
+                  Брокер перезвонит в течение 15 минут, уточнит запрос и предложит
+                  объекты, которые уже есть в работе.
+                </p>
+
+                <div class="form-success" id="lead-success" role="status">
+                  <div class="form-success__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <h3 data-i18n="contact.successTitle">Заявка принята</h3>
+                  <p data-i18n="contact.successText">Спасибо! Перезвоним в течение 15 минут в рабочее время. Можете сразу написать в мессенджер.</p>
+                  <div class="form-success__links">
+                    <a class="btn btn--primary" href="#" data-stub-msg>WhatsApp</a>
+                    <a class="btn btn--ghost" href="#" data-stub-msg>Telegram</a>
+                  </div>
+                </div>
+
+                <form class="cta-lead__form" action="#" method="post" id="lead-form" novalidate>
+                  <div class="cta-lead__row">
+                    <div class="field field--light">
+                      <label for="name" data-i18n="contact.name">Имя</label>
+                      <input type="text" id="name" name="name" placeholder="Как к вам обращаться" data-i18n-placeholder="contact.namePh" autocomplete="name" required />
+                      <span class="field-error" data-i18n="contact.errName">Укажите имя</span>
+                    </div>
+                    <div class="field field--light">
+                      <label for="phone" data-i18n="contact.phone">Телефон</label>
+                      <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required inputmode="tel" />
+                      <span class="field-error" data-i18n="contact.errPhone">Введите корректный телефон</span>
+                    </div>
+                  </div>
+                  <div class="field field--light">
+                    <label for="interest" data-i18n="contact.interest">Что ищете</label>
+                    <select id="interest" name="interest">
+                      <option value="apartment" data-i18n="contact.opt1">Квартиру</option>
+                      <option value="house" data-i18n="contact.opt2">Дом / таунхаус</option>
+                      <option value="newbuild" data-i18n="contact.opt3">Новостройку</option>
+                      <option value="invest" data-i18n="contact.opt4">Вариант под инвестиции</option>
+                      <option value="other" data-i18n="contact.opt5">Пока выбираю</option>
+                    </select>
+                  </div>
+                  <div class="field field--light">
+                    <label for="message" data-i18n="contact.message">Бюджет и район</label>
+                    <textarea id="message" name="message" placeholder="Например: 20–30 млн, запад, 2–3 комнаты" data-i18n-placeholder="contact.msgPh" rows="3"></textarea>
+                  </div>
+                  <div class="field field-consent">
+                    <input type="checkbox" id="consent" name="consent" required />
+                    <label for="consent">
+                      <span data-i18n="contact.consent">Согласен на обработку</span>
+                      <a href="privacy.html" data-i18n="contact.privacy">персональных данных</a>
+                    </label>
+                    <span class="field-error" style="flex-basis:100%;margin-left:1.65rem" data-i18n="contact.errConsent">Нужно согласие</span>
+                  </div>
+                  <button class="btn btn--primary btn--block" type="submit" data-i18n="contact.submit">Получить подборку</button>
+                  <p class="cta-lead__note" data-i18n="contact.note">Без рассылок. Один звонок по вашей заявке.</p>
+                  <div class="cta-lead__alt">
+                    <a href="#" data-stub-msg>WhatsApp</a>
+                    <a href="#" data-stub-msg>Telegram</a>
+                    <a href="tel:+74950184729" data-i18n="contact.call">Позвонить</a>
+                    <button type="button" class="btn btn--text" data-open-quiz data-i18n="cta.quiz">Пройти квиз</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="cta-lead__visual">
+                <img src="assets/images/cta-bg.jpg" alt="" width="900" height="1100" loading="lazy" />
+                <div class="cta-lead__card">
+                  <p class="cta-lead__card-title" data-i18n="contact.after">Что будет после заявки</p>
+                  <ul class="cta-lead__list">
+                    <li data-i18n="contact.step1">Созвон 15–20 минут</li>
+                    <li data-i18n="contact.step2">Фиксация бюджета и районов</li>
+                    <li data-i18n="contact.step3">Первые 5–7 вариантов за 48 часов</li>
+                  </ul>
+                  <a class="cta-lead__phone" href="tel:+74950184729">+7 (495) 018-47-29</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div class="footer__grid">
+            <div class="footer__brand">
+              <p class="footer__kicker" data-i18n="footer.kicker">Контакты</p>
+              <h2 class="footer__headline" data-i18n="footer.headline">
+                Находим жильё в&nbsp;Москве, в&nbsp;котором хочется остаться
+              </h2>
+              <div class="footer__social">
+                <a href="tel:+74950184729" aria-label="Телефон">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+                <a href="#" data-stub-msg aria-label="Telegram">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 4.5 2.8 11.7c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.7.4.9 1 .9.7 0 1-.3 1.4-.8l2.7-3.6 5.6 4.1c1 .6 1.8.3 2-.9l3.4-16c.3-1.4-.5-2-1.6-1.6z"/></svg>
+                </a>
+                <a href="#" data-stub-msg aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
+                </a>
+                <a href="mailto:hello@nest.example" aria-label="Email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer__col">
+              <h4 data-i18n="footer.contact">Связаться с нами</h4>
+              <ul>
+                <li><a href="tel:+74950184729">+7 (495) 018-47-29</a></li>
+                <li><a href="mailto:hello@nest.example">hello@nest.example</a></li>
+                <li><span data-i18n="footer.moscow">Москва</span></li>
+                <li><span data-i18n="footer.hours">Пн–Пт 10:00–20:00</span></li>
+              </ul>
+            </div>
+
+            <div class="footer__col">
+              <h4 data-i18n="footer.nav">Навигация</h4>
+              <ul>
+                <li><a href="#properties" data-i18n="nav.properties">Объекты</a></li>
+                <li><a href="#districts" data-i18n="nav.districts">Районы</a></li>
+                <li><a href="#why" data-i18n="nav.about">О нас</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__col">
+              <h4 data-i18n="footer.info">Информация</h4>
+              <ul>
+                <li><a href="#contact" data-i18n="footer.pick">Подбор жилья</a></li>
+                <li><a href="#mortgage" data-i18n="footer.mortgage">Ипотечный ориентир</a></li>
+                <li><a href="#process" data-i18n="footer.deal">Сопровождение сделки</a></li>
+                <li><a href="privacy.html" data-i18n="footer.privacy">Политика конфиденциальности</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer__bottom">
+            <span data-i18n="footer.rights">© 2026 Nest</span>
+            <a href="privacy.html" data-i18n="footer.privacy">Политика конфиденциальности</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="mobile-bar" id="mobile-bar" aria-label="Быстрые действия">
+      <a class="mobile-bar__call" href="tel:+74950184729">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-i18n="mobile.call">Звонок</span>
+      </a>
+      <a class="mobile-bar__wa" href="#" data-stub-msg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <button type="button" class="mobile-bar__lead" data-scroll-contact>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v12H5.17L4 17.17V4z" stroke-linejoin="round"/><path d="M8 8h8M8 12h5" stroke-linecap="round"/></svg>
+        <span data-i18n="mobile.lead">Заявка</span>
+      </button>
+    </div>
+
+    <a class="float-wa" href="#" data-stub-msg aria-label="Написать в WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
+    </a>
+
+    <!-- Quiz modal -->
+    <div class="quiz-overlay" id="quiz-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quiz-heading">
+      <div class="quiz">
+        <div class="quiz__top">
+          <div class="quiz__progress"><div class="quiz__progress-bar" id="quiz-progress"></div></div>
+          <button type="button" class="quiz__close" aria-label="Закрыть" data-i18n-aria="aria.close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+
+        <div class="quiz__step is-active" data-key="type">
+          <p class="quiz__eyebrow" data-i18n-step="1">Шаг 1 из 5</p>
+          <h2 class="quiz__title" id="quiz-heading" data-i18n="quiz.q1">Что ищете?</h2>
+          <div class="quiz__options">
+            <button type="button" class="quiz__option" data-value="apartment" data-i18n="quiz.o1a">Квартиру</button>
+            <button type="button" class="quiz__option" data-value="newbuild" data-i18n="quiz.o1b">Новостройку</button>
+            <button type="button" class="quiz__option" data-value="house" data-i18n="quiz.o1c">Дом / таунхаус</button>
+            <button type="button" class="quiz__option" data-value="invest" data-i18n="quiz.o1d">Под инвестиции</button>
+          </div>
+          <div class="quiz__nav">
+            <button type="button" class="btn btn--primary" data-quiz-next data-i18n="quiz.next">Далее</button>
+          </div>
+        </div>
+
+        <div class="quiz__step" data-key="budget">
+          <p class="quiz__eyebrow" data-i18n-step="2">Шаг 2 из 5</p>
+          <h2 class="quiz__title" data-i18n="quiz.q2">Какой бюджет?</h2>
+          <div class="quiz__options">
+            <button type="button" class="quiz__option" data-value="to15" data-i18n="quiz.o2a">до 15 млн ₽</button>
+            <button type="button" class="quiz__option" data-value="15-30" data-i18n="quiz.o2b">15–30 млн ₽</button>
+            <button type="button" class="quiz__option" data-value="30-50" data-i18n="quiz.o2c">30–50 млн ₽</button>
+            <button type="button" class="quiz__option" data-value="50plus" data-i18n="quiz.o2d">от 50 млн ₽</button>
+          </div>
+          <div class="quiz__nav">
+            <button type="button" class="btn btn--ghost-dark" data-quiz-back data-i18n="quiz.back">Назад</button>
+            <button type="button" class="btn btn--primary" data-quiz-next data-i18n="quiz.next">Далее</button>
+          </div>
+        </div>
+
+        <div class="quiz__step" data-key="district">
+          <p class="quiz__eyebrow" data-i18n-step="3">Шаг 3 из 5</p>
+          <h2 class="quiz__title" data-i18n="quiz.q3">Какой район?</h2>
+          <div class="quiz__options">
+            <button type="button" class="quiz__option" data-value="center" data-i18n="quiz.o3a">Центр</button>
+            <button type="button" class="quiz__option" data-value="west" data-i18n="quiz.o3b">Запад</button>
+            <button type="button" class="quiz__option" data-value="north" data-i18n="quiz.o3c">Север / Юг / Восток</button>
+            <button type="button" class="quiz__option" data-value="any" data-i18n="quiz.o3d">Пока не важно</button>
+          </div>
+          <div class="quiz__nav">
+            <button type="button" class="btn btn--ghost-dark" data-quiz-back data-i18n="quiz.back">Назад</button>
+            <button type="button" class="btn btn--primary" data-quiz-next data-i18n="quiz.next">Далее</button>
+          </div>
+        </div>
+
+        <div class="quiz__step" data-key="timing">
+          <p class="quiz__eyebrow" data-i18n-step="4">Шаг 4 из 5</p>
+          <h2 class="quiz__title" data-i18n="quiz.q4">Когда планируете покупку?</h2>
+          <div class="quiz__options">
+            <button type="button" class="quiz__option" data-value="asap" data-i18n="quiz.o4a">Как можно скорее</button>
+            <button type="button" class="quiz__option" data-value="1-3m" data-i18n="quiz.o4b">1–3 месяца</button>
+            <button type="button" class="quiz__option" data-value="3-6m" data-i18n="quiz.o4c">3–6 месяцев</button>
+            <button type="button" class="quiz__option" data-value="research" data-i18n="quiz.o4d">Пока изучаю рынок</button>
+          </div>
+          <div class="quiz__nav">
+            <button type="button" class="btn btn--ghost-dark" data-quiz-back data-i18n="quiz.back">Назад</button>
+            <button type="button" class="btn btn--primary" data-quiz-next data-i18n="quiz.next">Далее</button>
+          </div>
+        </div>
+
+        <div class="quiz__step" data-key="contact">
+          <p class="quiz__eyebrow" data-i18n-step="5">Шаг 5 из 5</p>
+          <h2 class="quiz__title" data-i18n="quiz.q5">Куда прислать 5–7 вариантов?</h2>
+          <div class="form-success" id="quiz-success" role="status">
+            <div class="form-success__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 data-i18n="quiz.ok">Принято</h3>
+            <p data-i18n="quiz.okText">Брокер свяжется в течение 15 минут и уточнит детали shortlist.</p>
+          </div>
+          <form id="quiz-form" novalidate>
+            <input type="hidden" name="quiz_answers" value="" />
+            <div class="field field--light" style="margin-bottom:0.75rem">
+              <label for="quiz-name" data-i18n="contact.name">Имя</label>
+              <input type="text" id="quiz-name" name="name" required autocomplete="name" placeholder="Как к вам обращаться" data-i18n-placeholder="contact.namePh" />
+              <span class="field-error" data-i18n="contact.errName">Укажите имя</span>
+            </div>
+            <div class="field field--light" style="margin-bottom:0.75rem">
+              <label for="quiz-phone" data-i18n="contact.phone">Телефон</label>
+              <input type="tel" id="quiz-phone" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__" inputmode="tel" />
+              <span class="field-error" data-i18n="contact.errPhone">Введите телефон</span>
+            </div>
+            <div class="field field-consent" style="margin-bottom:1rem">
+              <input type="checkbox" id="quiz-consent" name="consent" required />
+              <label for="quiz-consent"><span data-i18n="quiz.consent">Согласен на</span> <a href="privacy.html" target="_blank" data-i18n="contact.privacy">обработку данных</a></label>
+              <span class="field-error" style="flex-basis:100%" data-i18n="contact.errConsent">Нужно согласие</span>
+            </div>
+            <div class="quiz__nav">
+              <button type="button" class="btn btn--ghost-dark" data-quiz-back data-i18n="quiz.back">Назад</button>
+              <button type="submit" class="btn btn--primary" data-i18n="quiz.submit">Получить подборку</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
