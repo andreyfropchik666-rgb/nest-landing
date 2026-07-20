@@ -6776,7 +6776,7 @@ textarea:focus-visible {
    No extra empty gap under the form panel */
 @media (max-width: 960px) {
   .cta-lead {
-    padding-top: 1.5rem !important;
+    padding-top: var(--section-pad) !important; /* same gap as other sections */
     padding-bottom: 0 !important; /* no empty dark strip under the block */
   }
 
