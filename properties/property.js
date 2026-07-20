@@ -382,42 +382,25 @@
     });
   });
 
-  /* Map skeleton: show placeholder until iframe loads (or timeout) */
+  /* Map: ensure iframe is visible; skeleton until load */
   document.querySelectorAll(".prop-map").forEach(function (map) {
     var iframe = map.querySelector("iframe");
     var fallback = map.querySelector(".prop-map__fallback");
     if (!iframe) return;
 
-    if (!fallback) {
-      fallback = document.createElement("div");
-      fallback.className = "prop-map__fallback";
-      fallback.textContent = "Карта загружается…";
-      map.insertBefore(fallback, iframe);
-    }
+    map.classList.add("is-loaded");
+    if (fallback) fallback.hidden = true;
 
-    var done = false;
-    function markLoaded() {
-      if (done) return;
-      done = true;
-      map.classList.add("is-loaded");
-      if (fallback) fallback.hidden = true;
-    }
-    function markError() {
-      if (done) return;
-      done = true;
+    iframe.addEventListener("error", function () {
       map.classList.add("is-error");
+      map.classList.remove("is-loaded");
       if (fallback) {
         fallback.hidden = false;
         fallback.textContent = window.NestI18n
           ? window.NestI18n.t("propPage.mapError")
           : "Карта недоступна. Район указан в описании объекта.";
       }
-    }
-
-    iframe.addEventListener("load", markLoaded);
-    setTimeout(function () {
-      if (!done) markLoaded();
-    }, 6000);
+    });
   });
 
   /* Hide field errors until validation */
