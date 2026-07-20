@@ -2601,19 +2601,6 @@ body.page-property .header .menu-toggle span::after {
   font-size: 0.8125rem;
   color: var(--muted);
   text-align: center;
-  margin: 0;
-}
-
-.cta-lead__form .cta-lead__note {
-  margin-top: 0.15rem;
-}
-
-.cta-lead__form .cta-lead__alt {
-  margin-top: 0.5rem;
-}
-
-.cta-lead__form .cta-lead__quiz-prompt {
-  margin-top: 1.15rem;
 }
 
 .cta-lead__visual {
