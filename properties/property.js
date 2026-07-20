@@ -17,19 +17,26 @@
   function closeMenu() {
     if (!toggle || !nav) return;
     toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Открыть меню");
     nav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
     document.body.style.overflow = "";
+  }
+
+  function openMenu() {
+    if (!toggle || !nav) return;
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Закрыть меню");
+    nav.classList.add("is-open");
+    document.body.classList.add("menu-open");
+    document.body.style.overflow = "hidden";
   }
 
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
       var open = toggle.getAttribute("aria-expanded") === "true";
       if (open) closeMenu();
-      else {
-        toggle.setAttribute("aria-expanded", "true");
-        nav.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-      }
+      else openMenu();
     });
     nav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", closeMenu);
