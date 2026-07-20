@@ -6772,12 +6772,12 @@ textarea:focus-visible {
   }
 }
 
-/* 8. Contact (быстрая заявка) — photo+card on top, form below (mobile)
-   No extra empty gap under the form panel */
+/* 8. Contact (быстрая заявка) — photo+card on top, form below (mobile) */
 @media (max-width: 960px) {
   .cta-lead {
-    padding-top: var(--section-pad) !important; /* same gap as other sections */
-    padding-bottom: 0 !important; /* no empty dark strip under the block */
+    /* equal dark-frame padding top & bottom */
+    padding-top: var(--section-pad) !important;
+    padding-bottom: var(--section-pad) !important;
   }
 
   .cta-lead > .container {
@@ -6879,7 +6879,7 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   .cta-lead {
     padding-top: var(--section-pad) !important;
-    padding-bottom: 0 !important;
+    padding-bottom: var(--section-pad) !important;
   }
 
   .cta-lead__visual {
@@ -6930,7 +6930,7 @@ textarea:focus-visible {
   }
 
   body.has-mobile-bar .cta-lead {
-    padding-bottom: 0 !important;
+    padding-bottom: var(--section-pad) !important;
   }
 }
 
@@ -7111,12 +7111,12 @@ textarea:focus-visible {
    MOBILE CTA — kill empty space after form (final)
    ============================================ */
 @media (max-width: 960px) {
-  /* Same gap from previous section as every other block */
+  /* Black block: same padding top & bottom */
   section.cta-lead#contact,
   .cta-lead#contact,
   section.cta-lead {
-    padding-top: var(--section-pad) !important; /* = 3rem on mobile */
-    padding-bottom: 0 !important; /* no empty strip under form */
+    padding-top: var(--section-pad) !important;
+    padding-bottom: var(--section-pad) !important;
     margin-bottom: 0 !important;
   }
 
@@ -7170,8 +7170,8 @@ textarea:focus-visible {
 @media (max-width: 768px) {
   section.cta-lead#contact,
   .cta-lead {
-    padding-top: var(--section-pad) !important; /* = 2.5rem, same as .section */
-    padding-bottom: 0 !important;
+    padding-top: var(--section-pad) !important;
+    padding-bottom: var(--section-pad) !important;
   }
 
   .cta-lead__form-wrap {
@@ -7179,9 +7179,13 @@ textarea:focus-visible {
   }
 }
 
-/* Also align earlier mobile cta-lead rules to the same top gap */
 @media (max-width: 960px) {
   .cta-lead {
     padding-top: var(--section-pad) !important;
+    padding-bottom: var(--section-pad) !important;
+  }
+
+  body.has-mobile-bar .cta-lead {
+    padding-bottom: var(--section-pad) !important;
   }
 }
