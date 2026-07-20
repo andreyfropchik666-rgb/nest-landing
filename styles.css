@@ -6405,3 +6405,317 @@ textarea:focus-visible {
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
+
+/* ============================================
+   MOBILE FIXES — menu / catalog / props / UI
+   ============================================ */
+
+/* 1. Open menu always above everything */
+@media (max-width: 960px) {
+  .header {
+    z-index: 300;
+  }
+
+  .nav {
+    z-index: 310;
+  }
+
+  .nav.is-open {
+    z-index: 310;
+    box-shadow: 0 24px 64px rgba(17, 19, 24, 0.18);
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 320;
+  }
+
+  .page-progress {
+    z-index: 50;
+  }
+}
+
+/* 2. Catalog actions order on mobile:
+   1) Request shortlist
+   2) Quiz 1 min
+   3) Count (bottom) */
+@media (max-width: 768px) {
+  .properties__head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .properties__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .properties__actions .btn--primary {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .properties__actions .btn--text,
+  .properties__actions [data-open-quiz] {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .properties__actions .filter-bar__count {
+    order: 3 !important;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.15rem;
+  }
+}
+
+/* 3. Property pages — readable description + working map */
+@media (max-width: 900px) {
+  .prop-page {
+    padding-inline: var(--gutter);
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .prop-info {
+    min-width: 0;
+  }
+
+  .prop-info__title {
+    max-width: none;
+  }
+
+  .prop-info__text {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+
+  .prop-proscons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .prop-pros,
+  .prop-cons {
+    min-width: 0;
+  }
+
+  .prop-pros ul,
+  .prop-cons ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  .prop-pros li,
+  .prop-cons li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  .prop-map {
+    min-height: 220px;
+    aspect-ratio: 16 / 10;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+  }
+
+  .prop-map iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    opacity: 1 !important;
+  }
+
+  .prop-book {
+    margin-top: 1.5rem;
+  }
+}
+
+/* 5. Districts — last card never photo-only */
+@media (max-width: 960px) {
+  .districts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .district-card,
+  .district-card--tall,
+  .district-card--wide {
+    grid-column: auto;
+    grid-row: auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .district-card__media,
+  .district-card--tall .district-card__media,
+  .district-card--wide .district-card__media {
+    flex: none;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .district-card__body,
+  .district-card--wide .district-card__body {
+    flex: 1;
+    padding: 1.15rem 1.2rem 1.25rem;
+  }
+
+  .district-card__cta {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    align-self: flex-start;
+    margin-top: 0.35rem;
+  }
+}
+
+/* 6. Process — rounded shell */
+@media (max-width: 960px) {
+  .process-stage {
+    border-radius: var(--r-xl);
+    overflow: hidden;
+  }
+
+  .process-cols {
+    border-radius: var(--r-xl);
+  }
+
+  .process-col:first-child {
+    border-top-left-radius: var(--r-xl);
+    border-top-right-radius: var(--r-xl);
+  }
+
+  .process-col:last-child {
+    border-bottom-left-radius: var(--r-xl);
+    border-bottom-right-radius: var(--r-xl);
+  }
+}
+
+/* 7. Mortgage — result under button, baseline-aligned */
+@media (max-width: 960px) {
+  .answers-calc__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .answers-calc__actions .btn {
+    width: 100%;
+  }
+
+  .answers-calc__result {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding: 0.85rem 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+  }
+
+  .answers-calc__from {
+    transform: none;
+    line-height: 1.2;
+  }
+
+  .answers-calc__value {
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+  }
+
+  .answers-split__title {
+    max-width: 18ch;
+    line-height: 1.15;
+  }
+}
+
+/* 8. Contact note ↔ messengers gap */
+.cta-lead__form .cta-lead__note + .cta-lead__alt {
+  margin-top: 0.45rem;
+}
+
+.cta-lead__form .cta-lead__alt + .cta-lead__quiz-prompt {
+  margin-top: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .cta-lead__alt {
+    gap: 0.45rem;
+  }
+
+  .cta-lead__alt a {
+    flex: 1 1 auto;
+    text-align: center;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 9. Mobile sticky bar — level, safe area, even cells */
+@media (max-width: 960px) {
+  .mobile-bar {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    left: max(var(--frame), 10px);
+    right: max(var(--frame), 10px);
+    bottom: max(calc(var(--frame) + 6px), calc(env(safe-area-inset-bottom, 0px) + 10px));
+    padding: 0.45rem;
+    gap: 0.4rem;
+    min-height: 58px;
+    box-sizing: border-box;
+  }
+
+  .mobile-bar a,
+  .mobile-bar button {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 48px;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.68rem;
+    line-height: 1.15;
+    padding: 0.35rem 0.25rem;
+  }
+
+  .mobile-bar a span,
+  .mobile-bar button span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .mobile-bar svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  body.has-mobile-bar {
+    padding-bottom: calc(var(--frame) + 5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.page-property.has-mobile-bar .prop-page {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+  }
+}
