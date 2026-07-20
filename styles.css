@@ -6468,6 +6468,11 @@ textarea:focus-visible {
     transform: translateY(120%) !important;
   }
 
+  /* 1. Hide language toggle while menu is open */
+  body.menu-open .lang-toggle {
+    display: none !important;
+  }
+
   .page-progress {
     z-index: 50;
   }
@@ -6762,53 +6767,82 @@ textarea:focus-visible {
   }
 }
 
-/* 8. Contact note ↔ messengers gap + less empty bottom space */
-.cta-lead__form .cta-lead__note + .cta-lead__alt {
-  margin-top: 0.45rem;
-}
-
-.cta-lead__form .cta-lead__alt + .cta-lead__quiz-prompt {
-  margin-top: 1.1rem;
-}
-
+/* 8. Contact (быстрая заявка) — form first, less empty space (mobile only) */
 @media (max-width: 960px) {
   .cta-lead {
-    padding-block: 3rem 2.5rem !important;
-  }
-
-  .cta-lead__visual {
-    min-height: 200px !important;
-    max-height: 240px;
-  }
-
-  .cta-lead__form-wrap {
-    padding-bottom: 0;
+    padding-block: 2.25rem 1.5rem !important;
   }
 
   .cta-lead__grid {
-    gap: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Form on top so title/fields are fully visible */
+  .cta-lead__form-wrap {
+    order: 1;
+    padding: 1.35rem 1.15rem 1.25rem !important;
+  }
+
+  .cta-lead__visual {
+    order: 2;
+    min-height: 0 !important;
+    max-height: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .cta-lead__form-wrap .section-title {
+    max-width: none;
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+  }
+
+  .cta-lead__text {
+    margin-bottom: 1rem;
+  }
+
+  .cta-lead__form {
+    gap: 0.7rem;
+  }
+
+  .cta-lead__card {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .cta-lead__form .cta-lead__note + .cta-lead__alt {
+    margin-top: 0.4rem;
+  }
+
+  .cta-lead__form .cta-lead__alt + .cta-lead__quiz-prompt {
+    margin-top: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
   .cta-lead {
-    padding-block: 2.5rem 1.75rem !important;
+    padding-block: 1.75rem 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .cta-lead__form-wrap {
+    padding: 1.15rem 1rem 1rem !important;
   }
 
   .cta-lead__visual {
-    min-height: 160px !important;
-    max-height: 200px;
+    aspect-ratio: 2 / 1;
+    max-height: 180px;
   }
 
-  .cta-lead__card {
-    left: 0.85rem;
-    right: 0.85rem;
-    bottom: 0.85rem;
-    padding: 1rem 1.1rem;
+  .cta-lead__visual img {
+    object-position: center 40%;
   }
 
   .cta-lead__alt {
-    gap: 0.45rem;
+    gap: 0.4rem;
   }
 
   .cta-lead__alt a {
@@ -6820,8 +6854,114 @@ textarea:focus-visible {
     justify-content: center;
   }
 
-  .cta-lead__form .cta-lead__quiz-prompt {
-    margin-bottom: 0;
+  .cta-lead__quiz-prompt {
+    margin-bottom: 0 !important;
+    padding: 0.85rem 0.95rem;
+  }
+
+  /* Extra bottom space under contact when sticky bar shows */
+  body.has-mobile-bar .cta-lead {
+    padding-bottom: 0.75rem !important;
+  }
+}
+
+/* 3. Quiz consent checkbox — text vertically centered to box */
+.quiz .field-consent,
+#quiz-form .field-consent {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center !important;
+  column-gap: 0.7rem;
+  row-gap: 0.3rem;
+}
+
+.quiz .field-consent input[type="checkbox"],
+#quiz-form .field-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0 !important;
+  align-self: center !important;
+}
+
+.quiz .field-consent label,
+#quiz-form .field-consent label {
+  margin: 0 !important;
+  align-self: center !important;
+  line-height: 1.3;
+  padding-top: 0 !important;
+  display: block;
+}
+
+.quiz .field-consent .field-error,
+#quiz-form .field-consent .field-error {
+  grid-column: 2;
+  margin: 0 !important;
+  flex-basis: auto !important;
+}
+
+/* 4. Tighter section spacing on mobile only */
+@media (max-width: 960px) {
+  :root {
+    --section-pad: 3rem; /* 48px */
+    --section-pad-sm: 2.25rem;
+  }
+
+  .section {
+    padding-block: 3rem !important;
+  }
+
+  .properties,
+  .districts,
+  .why,
+  .process,
+  .answers,
+  .reviews {
+    padding-block: 3rem !important;
+  }
+
+  .section-head {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .properties__head {
+    margin-bottom: 1.25rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pad: 2.5rem; /* 40px */
+    --section-pad-sm: 2rem;
+  }
+
+  .section,
+  .properties,
+  .districts,
+  .why,
+  .process,
+  .answers,
+  .reviews {
+    padding-block: 2.5rem !important;
+  }
+
+  .hero {
+    padding-bottom: 2rem;
+  }
+
+  .footer {
+    padding-top: 2.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section,
+  .properties,
+  .districts,
+  .why,
+  .process,
+  .answers,
+  .reviews {
+    padding-block: 2.25rem !important; /* 36px */
   }
 }
 
