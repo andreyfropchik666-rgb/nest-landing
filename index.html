@@ -7,13 +7,14 @@
       name="description"
       content="Nest — подбираем квартиры и дома в Москве. Один брокер от первого звонка до ключей."
     />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#111318" />
     <title>Nest — Находим жильё, в котором хочется остаться</title>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Nest" />
     <meta property="og:title" content="Nest — Находим жильё, в котором хочется остаться" />
     <meta
       property="og:description"
@@ -96,7 +97,7 @@
         <!-- HERO -->
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero__media" aria-hidden="true">
-            <img src="assets/images/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
+            <img src="assets/images/hero.jpg" alt="Современная квартира в Москве с видом на город — Nest подбирает жильё" width="1920" height="1080" fetchpriority="high" />
             <div class="hero__overlay"></div>
           </div>
 
@@ -108,11 +109,6 @@
               <p class="hero__subtitle" data-i18n="hero.sub">
                 Квартиры и дома в сильных районах Москвы. Один брокер — до ключей.
               </p>
-
-              <div class="hero__actions">
-                <a class="btn btn--light" href="#properties" data-i18n="search.submit">Смотреть объекты</a>
-                <a class="btn btn--ghost-light" href="#contact" data-i18n="cta.find">Начать поиск</a>
-              </div>
 
               <div class="search-panel">
                 <form class="search-form" action="#properties" method="get" role="search" aria-label="Поиск жилья">
@@ -163,19 +159,19 @@
             <div class="container">
               <div class="stats-bar">
                 <div class="stats-bar__item">
-                  <div class="stats-bar__value"><span class="js-count" data-target="450" data-suffix="+">0</span></div>
+                  <div class="stats-bar__value"><span class="js-count" data-target="450" data-suffix="+">450+</span></div>
                   <div class="stats-bar__label" data-i18n="stats.s1">объектов в работе</div>
                 </div>
                 <div class="stats-bar__item">
-                  <div class="stats-bar__value"><span class="js-count" data-target="1200" data-suffix="+">0</span></div>
+                  <div class="stats-bar__value"><span class="js-count" data-target="1200" data-suffix="+">1&nbsp;200+</span></div>
                   <div class="stats-bar__label" data-i18n="stats.s2">семей уже с ключами</div>
                 </div>
                 <div class="stats-bar__item">
-                  <div class="stats-bar__value"><span class="js-count" data-target="98" data-suffix="%">0</span></div>
+                  <div class="stats-bar__value"><span class="js-count" data-target="98" data-suffix="%">98%</span></div>
                   <div class="stats-bar__label" data-i18n="stats.s3">сделок доводим до конца</div>
                 </div>
                 <div class="stats-bar__item">
-                  <div class="stats-bar__value"><span class="js-count" data-target="15">0</span></div>
+                  <div class="stats-bar__value"><span class="js-count" data-target="15">15</span></div>
                   <div class="stats-bar__label" data-i18n="stats.s4">лет на рынке Москвы</div>
                 </div>
               </div>
@@ -211,13 +207,13 @@
               <a href="#properties" class="filter-bar__reset" id="filter-reset" hidden data-i18n="prop.reset">Сбросить</a>
             </div>
 
-            <div class="properties-empty" id="properties-empty" role="status">
+            <div class="properties-empty" id="properties-empty" role="status" hidden>
               <h3 data-i18n="prop.emptyTitle">По этим фильтрам объектов нет</h3>
               <p data-i18n="prop.emptyText">Сбросьте фильтры или оставьте заявку — подберём варианты под ваш запрос.</p>
               <a class="btn btn--primary" href="#contact" data-i18n="prop.emptyCta">Оставить заявку на подбор</a>
             </div>
 
-            <div class="property-grid">
+            <div class="property-grid" id="property-grid">
               <a
                 class="property-card property-card--featured reveal"
                 href="properties/property-1.html"
@@ -422,7 +418,7 @@
             <div class="districts-grid">
               <article class="district-card district-card--tall reveal">
                 <div class="district-card__media">
-                  <img src="assets/images/property-1.jpg" alt="" loading="lazy" width="640" height="480" />
+                  <img src="assets/images/property-1.jpg" alt="Жилой квартал Хамовников" loading="lazy" width="640" height="480" />
                 </div>
                 <div class="district-card__body">
                   <h3 class="district-card__name">Хамовники</h3>
@@ -433,7 +429,7 @@
               </article>
               <article class="district-card reveal">
                 <div class="district-card__media">
-                  <img src="assets/images/property-2.jpg" alt="" loading="lazy" width="640" height="400" />
+                  <img src="assets/images/property-2.jpg" alt="Пресненский район и виды на Сити" loading="lazy" width="640" height="400" />
                 </div>
                 <div class="district-card__body">
                   <h3 class="district-card__name">Пресненский</h3>
@@ -444,7 +440,7 @@
               </article>
               <article class="district-card reveal">
                 <div class="district-card__media">
-                  <img src="assets/images/property-3.jpg" alt="" loading="lazy" width="640" height="400" />
+                  <img src="assets/images/property-3.jpg" alt="Район Раменки рядом с парком" loading="lazy" width="640" height="400" />
                 </div>
                 <div class="district-card__body">
                   <h3 class="district-card__name">Раменки</h3>
@@ -455,7 +451,7 @@
               </article>
               <article class="district-card district-card--wide reveal">
                 <div class="district-card__media">
-                  <img src="assets/images/property-4.jpg" alt="" loading="lazy" width="800" height="420" />
+                  <img src="assets/images/property-4.jpg" alt="Таунхаусы и дома в Сколково" loading="lazy" width="800" height="420" />
                 </div>
                 <div class="district-card__body">
                   <h3 class="district-card__name">Сколково</h3>
@@ -580,7 +576,7 @@
               <div class="answers-split__media">
                 <img
                   src="assets/images/mortgage-side.jpg"
-                  alt=""
+                  alt="Интерьер современной квартиры — ориентир по бюджету и ипотеке"
                   width="1200"
                   height="1400"
                   loading="lazy"
@@ -637,7 +633,7 @@
                     </button>
                     <div class="answers-calc__result" id="m-result">
                       <span class="answers-calc__from" data-i18n="mortgage.from">от</span>
-                      <p class="answers-calc__value" id="m-payment">—</p>
+                      <p class="answers-calc__value" id="m-payment" data-raw-pay="278251">278&nbsp;251 ₽/мес</p>
                     </div>
                   </div>
                   <p class="answers-calc__note" data-i18n="mortgage.note">
@@ -738,9 +734,9 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </div>
                   <div class="reviews-split__avatars" aria-hidden="true">
-                    <img src="assets/images/avatar-2.jpg" alt="" width="40" height="40" loading="lazy" />
-                    <img src="assets/images/avatar-1.jpg" alt="" width="40" height="40" loading="lazy" />
-                    <img src="assets/images/avatar-3.jpg" alt="" width="40" height="40" loading="lazy" />
+                    <img src="assets/images/avatar-2.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                    <img src="assets/images/avatar-1.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" />
+                    <img src="assets/images/avatar-3.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" />
                   </div>
                   <p class="reviews-split__rating" data-i18n="reviews.ratingLabel">4.9 · на основе отзывов клиентов</p>
                 </div>
@@ -752,7 +748,7 @@
                     <div class="reviews-marquee__group">
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-2.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-2.jpg" alt="Анна Ковалёва" width="48" height="48" loading="lazy" />
                           <div class="review-card__who">
                             <div class="review-card__name">
                               Анна Ковалёва
@@ -777,7 +773,7 @@
 
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-1.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-1.jpg" alt="Дмитрий Орлов" width="48" height="48" loading="lazy" />
                           <div class="review-card__who">
                             <div class="review-card__name">
                               Дмитрий Орлов
@@ -802,7 +798,7 @@
 
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-3.jpg" alt="" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-3.jpg" alt="Елена Морозова" width="48" height="48" loading="lazy" />
                           <div class="review-card__who">
                             <div class="review-card__name">
                               Елена Морозова
@@ -837,11 +833,11 @@
           <div class="container">
             <div class="cta-lead__grid">
               <div class="cta-lead__form-wrap">
-                <p class="eyebrow" data-i18n="contact.eyebrow">Заявка</p>
-                <h2 class="section-title" id="cta-title" data-i18n="contact.title">Оставьте контакты — подберём первые варианты</h2>
+                <p class="eyebrow" data-i18n="contact.eyebrow">Быстрая заявка</p>
+                <h2 class="section-title" id="cta-title" data-i18n="contact.title">Уже знаете, что ищете? Оставьте контакты</h2>
                 <p class="section-lead cta-lead__text" data-i18n="contact.lead">
-                  Брокер перезвонит в течение 15 минут, уточнит запрос и предложит
-                  объекты, которые уже есть в работе.
+                  Короткая форма для тех, кто определился с бюджетом и районом.
+                  Брокер перезвонит за 15 минут и пришлёт релевантные варианты.
                 </p>
 
                 <div class="form-success" id="lead-success" role="status">
@@ -851,8 +847,8 @@
                   <h3 data-i18n="contact.successTitle">Заявка принята</h3>
                   <p data-i18n="contact.successText">Спасибо! Перезвоним в течение 15 минут в рабочее время. Можете сразу написать в мессенджер.</p>
                   <div class="form-success__links">
-                    <a class="btn btn--primary" href="#" data-stub-msg>WhatsApp</a>
-                    <a class="btn btn--ghost" href="#" data-stub-msg>Telegram</a>
+                    <a class="btn btn--primary" href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a class="btn btn--ghost" href="https://t.me/nest_moscow" target="_blank" rel="noopener noreferrer">Telegram</a>
                   </div>
                 </div>
 
@@ -860,13 +856,13 @@
                   <div class="cta-lead__row">
                     <div class="field field--light">
                       <label for="name" data-i18n="contact.name">Имя</label>
-                      <input type="text" id="name" name="name" placeholder="Как к вам обращаться" data-i18n-placeholder="contact.namePh" autocomplete="name" required />
-                      <span class="field-error" data-i18n="contact.errName">Укажите имя</span>
+                      <input type="text" id="name" name="name" placeholder="Как к вам обращаться" data-i18n-placeholder="contact.namePh" autocomplete="name" required aria-describedby="err-name" />
+                      <span class="field-error" id="err-name" data-i18n="contact.errName" role="alert">Укажите имя</span>
                     </div>
                     <div class="field field--light">
                       <label for="phone" data-i18n="contact.phone">Телефон</label>
-                      <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required inputmode="tel" />
-                      <span class="field-error" data-i18n="contact.errPhone">Введите корректный телефон</span>
+                      <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required inputmode="tel" aria-describedby="err-phone" />
+                      <span class="field-error" id="err-phone" data-i18n="contact.errPhone" role="alert">Введите корректный телефон</span>
                     </div>
                   </div>
                   <div class="field field--light">
@@ -884,26 +880,29 @@
                     <textarea id="message" name="message" placeholder="Например: 20–30 млн, запад, 2–3 комнаты" data-i18n-placeholder="contact.msgPh" rows="3"></textarea>
                   </div>
                   <div class="field field-consent">
-                    <input type="checkbox" id="consent" name="consent" required />
+                    <input type="checkbox" id="consent" name="consent" required aria-describedby="err-consent" />
                     <label for="consent">
                       <span data-i18n="contact.consent">Согласен на обработку</span>
                       <a href="privacy.html" data-i18n="contact.privacy">персональных данных</a>
                     </label>
-                    <span class="field-error" style="flex-basis:100%;margin-left:1.65rem" data-i18n="contact.errConsent">Нужно согласие</span>
+                    <span class="field-error" id="err-consent" style="flex-basis:100%;margin-left:1.65rem" data-i18n="contact.errConsent" role="alert">Нужно согласие</span>
                   </div>
                   <button class="btn btn--primary btn--block" type="submit" data-i18n="contact.submit">Получить подборку</button>
                   <p class="cta-lead__note" data-i18n="contact.note">Без рассылок. Один звонок по вашей заявке.</p>
+                  <div class="cta-lead__quiz-prompt">
+                    <p data-i18n="contact.quizPrompt">Не уверены в бюджете или районе?</p>
+                    <button type="button" class="btn btn--ghost" data-open-quiz data-i18n="contact.quizCta">Пройти квиз за 1 минуту</button>
+                  </div>
                   <div class="cta-lead__alt">
-                    <a href="#" data-stub-msg>WhatsApp</a>
-                    <a href="#" data-stub-msg>Telegram</a>
+                    <a href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a href="https://t.me/nest_moscow" target="_blank" rel="noopener noreferrer">Telegram</a>
                     <a href="tel:+74950184729" data-i18n="contact.call">Позвонить</a>
-                    <button type="button" class="btn btn--text" data-open-quiz data-i18n="cta.quiz">Пройти квиз</button>
                   </div>
                 </form>
               </div>
 
               <div class="cta-lead__visual">
-                <img src="assets/images/cta-bg.jpg" alt="" width="900" height="1100" loading="lazy" />
+                <img src="assets/images/cta-bg.jpg" alt="Светлая гостиная с панорамными окнами — пример жилья из подборки Nest" width="900" height="1100" loading="lazy" />
                 <div class="cta-lead__card">
                   <p class="cta-lead__card-title" data-i18n="contact.after">Что будет после заявки</p>
                   <ul class="cta-lead__list">
@@ -931,10 +930,10 @@
                 <a href="tel:+74950184729" aria-label="Телефон">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </a>
-                <a href="#" data-stub-msg aria-label="Telegram">
+                <a href="https://t.me/nest_moscow" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 4.5 2.8 11.7c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.7.4.9 1 .9.7 0 1-.3 1.4-.8l2.7-3.6 5.6 4.1c1 .6 1.8.3 2-.9l3.4-16c.3-1.4-.5-2-1.6-1.6z"/></svg>
                 </a>
-                <a href="#" data-stub-msg aria-label="WhatsApp">
+                <a href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
                 </a>
                 <a href="mailto:hello@nest.example" aria-label="Email">
@@ -988,7 +987,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-i18n="mobile.call">Звонок</span>
       </a>
-      <a class="mobile-bar__wa" href="#" data-stub-msg>
+      <a class="mobile-bar__wa" href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
         <span>WhatsApp</span>
       </a>
@@ -998,7 +997,7 @@
       </button>
     </div>
 
-    <a class="float-wa" href="#" data-stub-msg aria-label="Написать в WhatsApp">
+    <a class="float-wa" href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.1 4 4.1-1.1A10 10 0 1 0 12 2zm5.7 14.2c-.2.7-1.3 1.2-2.1 1.4-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.5-5.2-4.7-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.7.9 2.4 1 2.6.1.2.1.4 0 .6l-.5.8c-.1.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.1 1.7z"/></svg>
     </a>
 
@@ -1014,7 +1013,7 @@
 
         <div class="quiz__step is-active" data-key="type">
           <p class="quiz__eyebrow" data-i18n-step="1">Шаг 1 из 5</p>
-          <h2 class="quiz__title" id="quiz-heading" data-i18n="quiz.q1">Что ищете?</h2>
+          <h2 class="quiz__title" id="quiz-heading" data-i18n="quiz.q1">Подберём shortlist за 1 минуту</h2>
           <div class="quiz__options">
             <button type="button" class="quiz__option" data-value="apartment" data-i18n="quiz.o1a">Квартиру</button>
             <button type="button" class="quiz__option" data-value="newbuild" data-i18n="quiz.o1b">Новостройку</button>

@@ -276,22 +276,34 @@
   }
 
   /* ========== COUNTERS ========== */
+  /* Final values are in HTML for no-JS / first paint; animate from 0 only when in view. */
+  function formatCountValue(value, target, suffix) {
+    if (target >= 1000) {
+      return value.toLocaleString("ru-RU") + suffix;
+    }
+    return value + suffix;
+  }
+
   function animateCount(el) {
     var target = parseInt(el.getAttribute("data-target"), 10) || 0;
     var suffix = el.getAttribute("data-suffix") || "";
     var duration = reducedMotion ? 0 : 1800;
     var start = performance.now();
 
+    if (duration === 0) {
+      el.textContent = formatCountValue(target, target, suffix);
+      return;
+    }
+
+    el.textContent = formatCountValue(0, target, suffix);
+
     function frame(now) {
-      var t = duration ? Math.min(1, (now - start) / duration) : 1;
+      var t = Math.min(1, (now - start) / duration);
       var eased = 1 - Math.pow(1 - t, 3);
       var value = Math.round(target * eased);
-      if (target >= 1000) {
-        el.textContent = value.toLocaleString("ru-RU") + suffix;
-      } else {
-        el.textContent = value + suffix;
-      }
+      el.textContent = formatCountValue(value, target, suffix);
       if (t < 1) requestAnimationFrame(frame);
+      else el.textContent = formatCountValue(target, target, suffix);
     }
     requestAnimationFrame(frame);
   }
@@ -371,13 +383,24 @@
   function setFieldError(field, msg) {
     if (!field) return;
     field.classList.add("is-invalid");
+    var input = field.querySelector("input, select, textarea");
     var err = field.querySelector(".field-error");
-    if (err) err.textContent = msg || "Проверьте поле";
+    if (err) {
+      err.textContent = msg || "Проверьте поле";
+      err.hidden = false;
+    }
+    if (input) {
+      input.setAttribute("aria-invalid", "true");
+    }
   }
 
   function clearFieldError(field) {
     if (!field) return;
     field.classList.remove("is-invalid");
+    var input = field.querySelector("input, select, textarea");
+    var err = field.querySelector(".field-error");
+    if (err) err.hidden = true;
+    if (input) input.removeAttribute("aria-invalid");
   }
 
   function clearFormErrors(formEl) {
@@ -439,6 +462,11 @@
     if (!formEl) return;
     options = options || {};
 
+    /* Errors hidden until validation fails */
+    formEl.querySelectorAll(".field-error").forEach(function (err) {
+      err.hidden = true;
+    });
+
     formEl.addEventListener("submit", function (e) {
       e.preventDefault();
       clearFormErrors(formEl);
@@ -450,20 +478,34 @@
       var phoneField = phoneInput && phoneInput.closest(".field");
       var consentField = consent && consent.closest(".field");
       var ok = true;
+      var i18n = window.NestI18n;
+      var firstInvalid = null;
 
       if (!nameInput || nameInput.value.trim().length < 2) {
-        setFieldError(nameField, "Укажите имя");
+        setFieldError(nameField, i18n ? i18n.t("contact.errName") : "Укажите имя");
         ok = false;
+        firstInvalid = firstInvalid || nameInput;
       }
       if (!phoneInput || !isValidPhone(phoneInput.value)) {
-        setFieldError(phoneField, "Введите корректный телефон");
+        setFieldError(phoneField, i18n ? i18n.t("contact.errPhone") : "Введите корректный телефон");
         ok = false;
+        firstInvalid = firstInvalid || phoneInput;
       }
       if (consent && !consent.checked) {
-        setFieldError(consentField, "Нужно согласие на обработку данных");
+        setFieldError(consentField, i18n ? i18n.t("contact.errConsent") : "Нужно согласие");
         ok = false;
+        firstInvalid = firstInvalid || consent;
       }
-      if (!ok) return;
+      if (!ok) {
+        if (firstInvalid && typeof firstInvalid.focus === "function") {
+          try {
+            firstInvalid.focus({ preventScroll: false });
+          } catch (err) {
+            firstInvalid.focus();
+          }
+        }
+        return;
+      }
 
       var btn = formEl.querySelector('button[type="submit"]');
       var original = btn ? btn.textContent : "";
@@ -595,6 +637,8 @@
     return true;
   }
 
+  var propertyGrid = document.getElementById("property-grid");
+
   function applyFilters(f, pushUrl) {
     if (!cards.length) return;
     var visible = 0;
@@ -611,7 +655,16 @@
       if (show) visible++;
     });
 
-    if (emptyEl) emptyEl.classList.toggle("is-visible", visible === 0);
+    /* Empty vs grid: exclusive if/else, never both */
+    var isEmpty = visible === 0;
+    if (emptyEl) {
+      emptyEl.hidden = !isEmpty;
+      emptyEl.classList.toggle("is-visible", isEmpty);
+    }
+    if (propertyGrid) {
+      propertyGrid.hidden = isEmpty;
+      propertyGrid.setAttribute("aria-hidden", isEmpty ? "true" : "false");
+    }
     var i18n = window.NestI18n;
     if (countEl) {
       if (i18n) {
@@ -833,14 +886,14 @@
     return Math.round(n).toLocaleString(loc) + " " + perMo;
   }
 
-  function animatePayTo(target) {
+  function animatePayTo(target, instant) {
     if (!mPayment) return;
-    if (reducedMotion) {
+    if (instant || reducedMotion) {
       payDisplay = target;
       mPayment.textContent = formatPay(target);
       return;
     }
-    var from = payDisplay || target;
+    var from = payDisplay > 0 ? payDisplay : target;
     var start = performance.now();
     var dur = 380;
     if (payAnimId) cancelAnimationFrame(payAnimId);
@@ -861,6 +914,7 @@
 
   function calcMortgage(opts) {
     if (!mPrice || !mPayment) return;
+    opts = opts || {};
     var price = parseFloat(mPrice.value) * 1000000;
     var downPct = parseFloat(mDown.value) / 100;
     var years = parseFloat(mYears.value);
@@ -876,21 +930,39 @@
     var mln = i18n ? i18n.t("meta.mln") : "млн ₽";
     var yearsU = i18n ? i18n.t("mortgage.yearsUnit") : "лет";
     mPayment.setAttribute("data-raw-pay", String(rounded));
-    animatePayTo(rounded);
+    animatePayTo(rounded, !!opts.instant);
     if (mPriceVal) mPriceVal.textContent = parseFloat(mPrice.value).toFixed(1) + " " + mln;
     if (mDownVal) mDownVal.textContent = mDown.value + "%";
     if (mYearsVal) mYearsVal.textContent = mYears.value + " " + yearsU;
     if (mRateVal) mRateVal.textContent = parseFloat(mRate.value).toFixed(1) + "%";
 
-    if (opts && opts.pulse && mResult) {
+    if (opts.pulse && mResult) {
       mResult.classList.remove("is-pulse");
       void mResult.offsetWidth;
       mResult.classList.add("is-pulse");
     }
   }
 
+  /* Seed display from HTML default so first paint matches calculation */
+  if (mPayment) {
+    var seed = parseFloat(mPayment.getAttribute("data-raw-pay") || "0");
+    if (seed > 0) payDisplay = seed;
+  }
+
+  function updateRangeFill(el) {
+    if (!el) return;
+    var min = parseFloat(el.min) || 0;
+    var max = parseFloat(el.max) || 100;
+    var val = parseFloat(el.value) || 0;
+    var pct = max === min ? 0 : ((val - min) / (max - min)) * 100;
+    el.style.setProperty("--range-progress", pct + "%");
+  }
+
   [mPrice, mDown, mYears, mRate].forEach(function (el) {
-    if (el) el.addEventListener("input", function () {
+    if (!el) return;
+    updateRangeFill(el);
+    el.addEventListener("input", function () {
+      updateRangeFill(el);
       calcMortgage();
     });
   });
@@ -899,9 +971,10 @@
       calcMortgage({ pulse: true });
     });
   }
-  calcMortgage();
+  /* Compute immediately on load (not on button click only) */
+  calcMortgage({ instant: true });
   window.addEventListener("nest:lang", function () {
-    calcMortgage();
+    calcMortgage({ instant: true });
   });
 
   /* ========== QUIZ ========== */
@@ -1127,11 +1200,13 @@
     });
   });
 
-  /* Messenger stubs — no real TG/WA links in portfolio build */
+  /* Legacy stub handlers (if any remain without real href) */
   document.querySelectorAll("[data-stub-msg]").forEach(function (el) {
+    var href = el.getAttribute("href") || "";
+    if (href && href !== "#" && href.indexOf("javascript:") !== 0) return;
     el.addEventListener("click", function (e) {
       e.preventDefault();
-      showToast(window.NestI18n ? window.NestI18n.t("stub.msg") : "Мессенджер — заглушка");
+      showToast(window.NestI18n ? window.NestI18n.t("stub.msg") : "Мессенджер недоступен");
     });
   });
 

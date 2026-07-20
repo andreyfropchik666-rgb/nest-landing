@@ -181,13 +181,34 @@
     if (!field) return;
     field.classList.add("is-invalid");
     var err = field.querySelector(".field-error");
-    if (err && msg) err.textContent = msg;
+    var input = field.querySelector("input, select, textarea");
+    if (err) {
+      if (msg) err.textContent = msg;
+      err.hidden = false;
+    }
+    if (input) input.setAttribute("aria-invalid", "true");
   }
   function clearError(field) {
-    if (field) field.classList.remove("is-invalid");
+    if (!field) return;
+    field.classList.remove("is-invalid");
+    var err = field.querySelector(".field-error");
+    var input = field.querySelector("input, select, textarea");
+    if (err) err.hidden = true;
+    if (input) input.removeAttribute("aria-invalid");
   }
 
   if (form) {
+    form.querySelectorAll(".field-error").forEach(function (err) {
+      err.hidden = true;
+    });
+    form.querySelectorAll("input, select, textarea").forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        clearError(inp.closest(".field"));
+      });
+      inp.addEventListener("change", function () {
+        clearError(inp.closest(".field"));
+      });
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       form.querySelectorAll(".field").forEach(clearError);
@@ -195,19 +216,26 @@
       var phone = form.querySelector('[name="phone"]');
       var consent = form.querySelector('[name="consent"]');
       var ok = true;
+      var firstInvalid = null;
       if (!name || name.value.trim().length < 2) {
-        setError(name.closest(".field"), "Укажите имя");
+        setError(name && name.closest(".field"), "Укажите имя");
         ok = false;
+        firstInvalid = firstInvalid || name;
       }
       if (!phone || !isValidPhone(phone.value)) {
-        setError(phone.closest(".field"), "Введите корректный телефон");
+        setError(phone && phone.closest(".field"), "Введите корректный телефон");
         ok = false;
+        firstInvalid = firstInvalid || phone;
       }
       if (consent && !consent.checked) {
         setError(consent.closest(".field"), "Нужно согласие");
         ok = false;
+        firstInvalid = firstInvalid || consent;
       }
-      if (!ok) return;
+      if (!ok) {
+        if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
+        return;
+      }
 
       var btn = form.querySelector('button[type="submit"]');
       var original = btn.textContent;
@@ -346,9 +374,56 @@
   }
 
   document.querySelectorAll("[data-stub-msg]").forEach(function (el) {
+    var href = el.getAttribute("href") || "";
+    if (href && href !== "#" && href.indexOf("javascript:") !== 0) return;
     el.addEventListener("click", function (e) {
       e.preventDefault();
-      showToast(window.NestI18n ? window.NestI18n.t("stub.msg") : "Мессенджер — заглушка");
+      showToast(window.NestI18n ? window.NestI18n.t("stub.msg") : "Мессенджер недоступен");
     });
   });
+
+  /* Map skeleton: show placeholder until iframe loads (or timeout) */
+  document.querySelectorAll(".prop-map").forEach(function (map) {
+    var iframe = map.querySelector("iframe");
+    var fallback = map.querySelector(".prop-map__fallback");
+    if (!iframe) return;
+
+    if (!fallback) {
+      fallback = document.createElement("div");
+      fallback.className = "prop-map__fallback";
+      fallback.textContent = "Карта загружается…";
+      map.insertBefore(fallback, iframe);
+    }
+
+    var done = false;
+    function markLoaded() {
+      if (done) return;
+      done = true;
+      map.classList.add("is-loaded");
+      if (fallback) fallback.hidden = true;
+    }
+    function markError() {
+      if (done) return;
+      done = true;
+      map.classList.add("is-error");
+      if (fallback) {
+        fallback.hidden = false;
+        fallback.textContent = window.NestI18n
+          ? window.NestI18n.t("propPage.mapError")
+          : "Карта недоступна. Район указан в описании объекта.";
+      }
+    }
+
+    iframe.addEventListener("load", markLoaded);
+    setTimeout(function () {
+      if (!done) markLoaded();
+    }, 6000);
+  });
+
+  /* Hide field errors until validation */
+  if (form) {
+    form.querySelectorAll(".field-error").forEach(function (err) {
+      err.hidden = true;
+    });
+  }
 })();
