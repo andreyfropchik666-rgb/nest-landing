@@ -1416,15 +1416,14 @@ body.page-property .header .menu-toggle span::after {
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* Magazine property card */
+/* Magazine property card — desktop: clean, no heavy frame */
 .property-card {
   background: var(--bg-elevated);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out),
-    border-color 0.35s var(--ease-out);
+  border: none;
+  box-shadow: none;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -3560,6 +3559,8 @@ body.page-property .header {
 }
 
 .prop-related__card {
+  display: flex;
+  flex-direction: column;
   background: var(--bg-elevated);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
@@ -3578,8 +3579,11 @@ body.page-property .header {
 
 .prop-related__card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
+  flex-shrink: 0;
   filter: saturate(0.9) contrast(1.04) brightness(0.98);
   transition: transform 0.35s var(--ease-out);
 }
@@ -5963,46 +5967,11 @@ textarea:focus-visible {
   color: var(--ink-soft);
 }
 
-/* Consistent image crop */
+/* Consistent image crop (desktop) */
 .property-card__media,
 .prop-gallery__main {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-}
-
-.prop-related__card {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-
-.prop-related__card img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  flex-shrink: 0;
-}
-
-.prop-related__body {
-  display: block !important;
-  padding: 1rem 1.15rem 1.2rem;
-  background: #fff;
-  flex: 1;
-  min-width: 0;
-}
-
-.prop-related__price,
-.prop-related__title,
-.prop-related__loc {
-  display: block;
-  visibility: visible;
-  opacity: 1;
 }
 
 .property-card__media img,
