@@ -6774,8 +6774,13 @@ textarea:focus-visible {
 
 /* 8. Contact (быстрая заявка) — photo+card on top, form below (mobile) */
 @media (max-width: 960px) {
+  /* Equal top/bottom padding of the whole block */
   .cta-lead {
-    padding-block: 2.25rem 1.75rem !important;
+    padding-block: 1.75rem !important;
+  }
+
+  .cta-lead > .container {
+    padding-bottom: 0;
   }
 
   .cta-lead__grid {
@@ -6783,6 +6788,7 @@ textarea:focus-visible {
     flex-direction: column;
     gap: 0;
     overflow: hidden;
+    margin-bottom: 0;
   }
 
   /* Photo first (as before) */
@@ -6814,9 +6820,10 @@ textarea:focus-visible {
     z-index: 1;
   }
 
+  /* White form panel: same padding top and bottom */
   .cta-lead__form-wrap {
     order: 0;
-    padding: 1.35rem 1.15rem 1.35rem !important;
+    padding: 1.25rem 1.15rem !important;
   }
 
   .cta-lead__form-wrap .section-title {
@@ -6830,20 +6837,51 @@ textarea:focus-visible {
 
   .cta-lead__form {
     gap: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .cta-lead__form .cta-lead__note {
+    margin-bottom: 0;
   }
 
   .cta-lead__form .cta-lead__note + .cta-lead__alt {
-    margin-top: 0.4rem;
+    margin-top: 0.45rem;
+    margin-bottom: 0;
   }
 
+  /* Last block in form — no extra empty gap below */
   .cta-lead__form .cta-lead__alt + .cta-lead__quiz-prompt {
-    margin-top: 0.85rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0 !important;
+  }
+
+  .cta-lead__form > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Quiz prompt on light form (was almost invisible + looked like empty space) */
+  .cta-lead__form-wrap .cta-lead__quiz-prompt {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    padding: 0.85rem 0.95rem;
+    background: var(--bg-muted);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+  }
+
+  .cta-lead__form-wrap .cta-lead__quiz-prompt p {
+    color: var(--ink-soft);
+  }
+
+  .cta-lead__form-wrap .cta-lead__quiz-prompt .btn--ghost {
+    color: var(--ink);
+    border-color: var(--line-strong);
   }
 }
 
 @media (max-width: 768px) {
   .cta-lead {
-    padding-block: 1.75rem 1.25rem !important;
+    padding-block: 1.5rem !important;
   }
 
   .cta-lead__visual {
@@ -6873,7 +6911,7 @@ textarea:focus-visible {
   }
 
   .cta-lead__form-wrap {
-    padding: 1.2rem 1rem 1.25rem !important;
+    padding: 1.15rem 1rem !important; /* top = bottom */
   }
 
   .cta-lead__alt {
@@ -6891,7 +6929,11 @@ textarea:focus-visible {
 
   .cta-lead__quiz-prompt {
     margin-bottom: 0 !important;
-    padding: 0.85rem 0.95rem;
+  }
+
+  /* Don’t add extra section tail after the white panel */
+  body.has-mobile-bar .cta-lead {
+    padding-bottom: 1.5rem !important;
   }
 }
 
