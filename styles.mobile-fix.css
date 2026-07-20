@@ -7189,38 +7189,3 @@ textarea:focus-visible {
     padding-bottom: var(--section-pad) !important;
   }
 }
-
-/* ========== FINAL MOBILE CTA BLACK FRAME (equal insets) ========== */
-@media only screen and (max-width: 960px) {
-  html body .site-shell section.cta-lead#contact {
-    padding-top: 48px !important;
-    padding-bottom: 48px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-    background: #14161c !important;
-    box-sizing: border-box !important;
-  }
-
-  html body .site-shell section.cta-lead#contact > .container {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin: 0 auto !important;
-  }
-
-  html body .site-shell section.cta-lead#contact .cta-lead__grid {
-    margin: 0 !important;
-  }
-
-  /* Keep footer flush after black block (no double gap) */
-  html body .site-shell .footer {
-    margin-top: 0 !important;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  html body .site-shell section.cta-lead#contact {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
-  }
-}
