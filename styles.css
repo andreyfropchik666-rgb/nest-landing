@@ -7106,3 +7106,74 @@ textarea:focus-visible {
     padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* ============================================
+   MOBILE CTA — kill empty space after form (final)
+   ============================================ */
+@media (max-width: 960px) {
+  section.cta-lead#contact,
+  .cta-lead#contact,
+  section.cta-lead {
+    padding-top: 1.25rem !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .cta-lead > .container {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .cta-lead__grid {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* White panel ends tightly after content */
+  .cta-lead__form-wrap {
+    padding: 1rem 1rem 1rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .cta-lead__form {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* This block after «Позвонить» was creating the big empty feel — hide on phone */
+  .cta-lead__quiz-prompt {
+    display: none !important;
+  }
+
+  .cta-lead__alt {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .cta-lead__note {
+    margin-bottom: 0.35rem !important;
+  }
+
+  /* Footer sits right under the form, no gap */
+  .cta-lead + .footer,
+  main + .footer,
+  .footer {
+    margin-top: 0 !important;
+  }
+
+  .footer {
+    padding-top: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  section.cta-lead#contact,
+  .cta-lead {
+    padding-top: 1rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .cta-lead__form-wrap {
+    padding: 0.9rem 0.9rem 0.9rem !important;
+  }
+}
