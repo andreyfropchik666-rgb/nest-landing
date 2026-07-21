@@ -74,9 +74,9 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
-  /* Vertical rhythm: 96–120px section padding (8px scale) */
-  --section-pad: clamp(6rem, 9vw, 7.5rem); /* 96–120px */
-  --section-pad-sm: clamp(4rem, 6vw, 5.5rem);
+  /* Vertical rhythm: compact section gaps */
+  --section-pad: clamp(2.5rem, 4vw, 3.5rem); /* ~40–56px */
+  --section-pad-sm: clamp(2rem, 3.2vw, 2.75rem);
   --motion: 0.3s var(--ease-out);
   --motion-fast: 0.22s var(--ease-out);
   --motion-hover: 0.25s ease-out;
@@ -178,7 +178,7 @@ ol {
 }
 
 .section-head {
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
   max-width: 36rem;
 }
 
@@ -844,8 +844,18 @@ body.page-property .header .menu-toggle span::after {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--ink);
+  background: currentColor;
   flex-shrink: 0;
+  opacity: 0.95;
+}
+
+.header:not(.is-solid) .nav__dot {
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.header.is-solid .nav__dot {
+  background: var(--ink);
 }
 
 .header__actions {
@@ -1416,14 +1426,16 @@ body.page-property .header .menu-toggle span::after {
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* Magazine property card — desktop: clean, no heavy frame */
+/* Magazine property card — bordered so body text doesn’t float */
 .property-card {
   background: var(--bg-elevated);
   border-radius: var(--r-md);
   overflow: hidden;
-  border: none;
-  box-shadow: none;
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  border: 1px solid var(--line-strong);
+  box-shadow:
+    0 1px 2px rgba(17, 19, 24, 0.04),
+    0 8px 24px rgba(17, 19, 24, 0.05);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1432,30 +1444,42 @@ body.page-property .header .menu-toggle span::after {
   cursor: pointer;
 }
 
+/* Hover must beat .reveal.is-visible { transform: none } */
 @media (hover: hover) and (pointer: fine) {
-  .property-card:hover {
+  .property-card:hover,
+  .property-card.reveal.is-visible:hover,
+  .property-card.is-active,
+  .property-card.reveal.is-visible.is-active {
     transform: translateY(-5px);
+    border-color: rgba(17, 19, 24, 0.16);
     box-shadow: 0 22px 44px rgba(17, 19, 24, 0.11);
   }
 
-  .property-card:hover .property-card__media img {
+  .property-card:hover .property-card__media img,
+  .property-card.reveal.is-visible:hover .property-card__media img,
+  .property-card.is-active .property-card__media img,
+  .property-card.reveal.is-visible.is-active .property-card__media img {
     transform: scale(1.04);
   }
 
-  .property-card:hover .property-card__media::after {
+  .property-card:hover .property-card__media::after,
+  .property-card.is-active .property-card__media::after {
     opacity: 1;
   }
 
-  .property-card:hover .property-card__overlay {
+  .property-card:hover .property-card__overlay,
+  .property-card.is-active .property-card__overlay {
     opacity: 1;
   }
 
-  .property-card:hover .property-card__cta {
+  .property-card:hover .property-card__cta,
+  .property-card.is-active .property-card__cta {
     transform: translateY(0);
     opacity: 1;
   }
 
-  .property-card:hover .property-card__meta {
+  .property-card:hover .property-card__meta,
+  .property-card.is-active .property-card__meta {
     opacity: 1;
     max-height: 5rem;
     margin-top: 0.75rem;
@@ -1464,8 +1488,32 @@ body.page-property .header .menu-toggle span::after {
     transform: none;
   }
 
-  .property-card:hover .property-card__cta svg {
+  .property-card:hover .property-card__cta svg,
+  .property-card.is-active .property-card__cta svg {
     transform: translateX(3px);
+  }
+
+  /* Featured card always looks “selected” */
+  .property-card--featured .property-card__overlay {
+    opacity: 1;
+  }
+
+  .property-card--featured .property-card__cta {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .property-card--featured .property-card__meta {
+    opacity: 1;
+    max-height: 5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.85rem;
+    border-top-color: var(--line);
+    transform: none;
+  }
+
+  .property-card--featured .property-card__media::after {
+    opacity: 0.55;
   }
 }
 
@@ -1971,7 +2019,7 @@ body.page-property .header .menu-toggle span::after {
 
 .process-head {
   max-width: 38rem;
-  margin-bottom: clamp(1.5rem, 3vw, 2.35rem);
+  margin-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
 }
 
 .process-head__label {
@@ -2517,7 +2565,7 @@ body.page-property .header .menu-toggle span::after {
 }
 
 .cta-lead__form-wrap {
-  padding: clamp(1.75rem, 3.5vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.75rem) clamp(1.15rem, 2.2vw, 1.65rem);
   background: #fff;
 }
 
@@ -2538,7 +2586,7 @@ body.page-property .header .menu-toggle span::after {
 .cta-lead__form {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .cta-lead__row {
@@ -2601,6 +2649,7 @@ body.page-property .header .menu-toggle span::after {
   font-size: 0.8125rem;
   color: var(--muted);
   text-align: center;
+  margin: 0;
 }
 
 .cta-lead__visual {
@@ -3099,7 +3148,7 @@ body.page-property .header .menu-toggle span::after {
   }
 
   .section {
-    padding-block: var(--space-16);
+    padding-block: var(--section-pad);
   }
 
   .hero {
@@ -3282,15 +3331,15 @@ body.page-property {
 }
 
 .prop-page {
-  padding-top: calc(var(--header-h) + 1.75rem);
-  padding-bottom: var(--space-16);
+  padding-top: calc(var(--header-h) + 1.15rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
   border-radius: 0 0 20px 20px;
 }
 
 .prop-detail {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  gap: clamp(1rem, 2vw, 1.75rem);
   align-items: start;
 }
 
@@ -3484,12 +3533,17 @@ body.page-property {
   font-size: 0.75rem;
   color: var(--muted);
   margin-bottom: 0.2rem;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .prop-spec__value {
   font-weight: 650;
   font-size: 0.975rem;
   letter-spacing: -0.01em;
+  display: block;
+  color: var(--ink);
 }
 
 .prop-info__text {
@@ -3510,9 +3564,14 @@ body.page-property {
 
 /* Related properties strip */
 .prop-related {
-  margin-top: var(--space-16);
-  padding-top: var(--space-12);
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: clamp(1.15rem, 2.5vw, 1.75rem);
   border-top: 1px solid var(--line);
+}
+
+body.page-property .prop-page {
+  padding-top: calc(var(--header-h) + 1rem);
+  padding-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
 body.page-property .footer {
@@ -3580,26 +3639,31 @@ body.page-property .header {
 }
 
 .prop-related__body {
-  padding: 1.35rem 1.5rem 1.45rem;
+  padding: 1.1rem 1.25rem 1.2rem;
+  display: block;
 }
 
 .prop-related__price {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   letter-spacing: -0.02em;
   margin-bottom: 0.3rem;
+  color: var(--ink);
 }
 
 .prop-related__title {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 550;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+  line-height: 1.35;
 }
 
 .prop-related__loc {
   font-size: 0.8rem;
   color: var(--muted);
+  line-height: 1.4;
 }
 
 .prop-book h3 {
@@ -4365,7 +4429,8 @@ body.page-property .header {
   letter-spacing: -0.03em;
   color: #fff;
   text-wrap: balance;
-  max-width: 14ch;
+  /* Two-line headline (not a narrow 4-line stack) */
+  max-width: min(100%, 22ch);
 }
 
 .answers-split__dash {
@@ -4833,9 +4898,10 @@ body.page-property .header {
 .cta-lead__alt {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
   justify-content: center;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
 }
 
 .cta-lead__alt a {
@@ -5113,18 +5179,48 @@ body.page-property .header {
 }
 
 .quiz__nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 0.85fr) minmax(0, 1.35fr);
   gap: 0.65rem;
   margin-top: 1.5rem;
+  align-items: stretch;
+}
+
+/* First step: only «Далее» — full width like option cards */
+.quiz__nav:has(> .btn:only-child),
+.quiz__nav--solo {
+  grid-template-columns: 1fr;
 }
 
 .quiz__nav .btn {
-  flex: 1;
+  width: 100%;
   min-width: 0;
-  white-space: normal;
+  height: auto;
+  min-height: 48px;
+  white-space: normal !important;
   text-align: center;
-  line-height: 1.25;
-  padding-inline: 0.75rem;
+  line-height: 1.3;
+  padding: 0.7rem 0.85rem;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Keep hover fill animation without clipping multi-line label */
+.quiz__nav .btn--primary {
+  overflow: hidden;
+  padding-inline: 0.9rem;
+  font-size: 0.9rem;
+  letter-spacing: -0.015em;
+}
+
+.quiz__nav:has(> .btn:only-child) .btn,
+.quiz__nav--solo .btn {
+  width: 100%;
+  min-height: 52px;
+  border-radius: var(--r-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.95rem 1.1rem;
 }
 
 .btn--ghost-dark {
@@ -5551,7 +5647,8 @@ body.page-property .header {
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 200;
+    /* Above quiz (200), lightbox (250), toast */
+    z-index: 10050;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     will-change: transform, width, height, opacity;
@@ -5623,7 +5720,7 @@ body.page-property .header {
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 201;
+    z-index: 10051;
     transform: translate(-50%, -50%);
     font-size: 0.6rem;
     font-weight: 600;
@@ -5967,12 +6064,36 @@ textarea:focus-visible {
 }
 
 .property-card__media img,
-.prop-related__card img,
 .prop-gallery__main img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Related cards: keep text body always visible (don't stretch photo over it) */
+.prop-related__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.prop-related__card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.prop-related__body {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex: 1 0 auto;
+  padding: 1.1rem 1.25rem 1.2rem;
+  background: var(--bg-elevated);
 }
 
 .property-card--featured .property-card__media {
@@ -5989,16 +6110,17 @@ textarea:focus-visible {
   background: var(--bg-muted);
 }
 
-/* Quiz prompt next to short form */
+/* Quiz prompt next to short form (light form panel) */
 .cta-lead__quiz-prompt {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1rem;
-  margin-top: 1.25rem;
-  padding: 1rem 1.1rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 0.55rem 0.85rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0;
+  padding: 0.75rem 0.9rem;
+  background: var(--bg-muted);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
 }
 
@@ -6006,20 +6128,20 @@ textarea:focus-visible {
   margin: 0;
   flex: 1 1 12rem;
   font-size: 0.9rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+  color: var(--ink-soft);
 }
 
 .cta-lead__quiz-prompt .btn--ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.35);
-  min-height: 44px;
+  color: var(--ink);
+  border-color: var(--line-strong);
+  min-height: 40px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cta-lead__quiz-prompt .btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #fff;
+    background: rgba(17, 19, 24, 0.05);
+    border-color: var(--ink);
   }
 }
 
@@ -6111,7 +6233,7 @@ textarea:focus-visible {
   }
 
   .section {
-    padding-block: 5.5rem; /* 88px — still on 8px rhythm */
+    padding-block: var(--section-pad);
   }
 }
 
@@ -6195,8 +6317,8 @@ textarea:focus-visible {
 
 /* Prop page vertical rhythm (8px scale) */
 .prop-page {
-  padding-top: calc(var(--header-h) + 2rem);
-  padding-bottom: 5rem;
+  padding-top: calc(var(--header-h) + 1.15rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .prop-info__badge {
@@ -6249,8 +6371,8 @@ textarea:focus-visible {
 }
 
 .prop-related {
-  margin-top: 3.5rem;
-  padding-top: 2.5rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: clamp(1.15rem, 2.5vw, 1.75rem);
   border-top: 1px solid var(--line);
 }
 
@@ -6260,7 +6382,7 @@ textarea:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.15rem;
 }
 
 .prop-related__grid {
@@ -6301,7 +6423,7 @@ textarea:focus-visible {
   }
 
   .section {
-    padding-block: clamp(4.5rem, 8vw, 6rem);
+    padding-block: var(--section-pad);
   }
 }
 
@@ -6384,7 +6506,7 @@ textarea:focus-visible {
   }
 
   .section {
-    padding-block: 4.5rem; /* 72px — 8px rhythm */
+    padding-block: var(--section-pad);
   }
 
   .stats-bar {
@@ -6941,18 +7063,22 @@ textarea:focus-visible {
   }
 
   .quiz__nav {
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
     gap: 0.55rem;
   }
 
   .quiz__nav .btn {
     width: 100%;
-    flex: none;
     min-height: 48px;
-    white-space: normal;
+    white-space: normal !important;
     font-size: 0.9rem;
-    padding: 0.7rem 1rem;
-    line-height: 1.25;
+    padding: 0.75rem 1rem;
+    line-height: 1.3;
+  }
+
+  /* Primary submit first on mobile */
+  .quiz__nav .btn--primary {
+    order: -1;
   }
 }
 
@@ -6993,12 +7119,12 @@ textarea:focus-visible {
 /* 4. Tighter section spacing on mobile only */
 @media (max-width: 960px) {
   :root {
-    --section-pad: 3rem; /* 48px */
-    --section-pad-sm: 2.25rem;
+    --section-pad: 2.25rem; /* 36px */
+    --section-pad-sm: 1.75rem;
   }
 
   .section {
-    padding-block: 3rem !important;
+    padding-block: 2.25rem !important;
   }
 
   .properties,
@@ -7007,22 +7133,22 @@ textarea:focus-visible {
   .process,
   .answers,
   .reviews {
-    padding-block: 3rem !important;
+    padding-block: 2.25rem !important;
   }
 
   .section-head {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.15rem !important;
   }
 
   .properties__head {
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1rem !important;
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --section-pad: 2.5rem; /* 40px */
-    --section-pad-sm: 2rem;
+    --section-pad: 2rem; /* 32px */
+    --section-pad-sm: 1.5rem;
   }
 
   .section,

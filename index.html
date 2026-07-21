@@ -32,7 +32,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="nest.css?v=20260720" />
+    <link rel="stylesheet" href="nest.css?v=20260722c" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C9A66B'/><path d='M16 7l9 7v11H7V14l9-7z' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>"
@@ -49,7 +49,7 @@
         <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5z" />
       </svg>
     </div>
-    <div class="cursor-label" id="cursor-label" aria-hidden="true">Смотреть</div>
+    <div class="cursor-label" id="cursor-label" aria-hidden="true" data-i18n="cursor.view">Смотреть</div>
     <div class="site-shell">
       <header class="header" id="header">
         <div class="header__inner">
@@ -67,7 +67,7 @@
             <a class="nav__link" href="#properties" data-i18n="nav.properties">Объекты</a>
             <a class="nav__link" href="#districts" data-i18n="nav.districts">Районы</a>
             <a class="nav__link" href="#why" data-i18n="nav.about">О нас</a>
-            <a class="nav__link" href="#faq" data-i18n="nav.faq">FAQ</a>
+            <a class="nav__link" href="#mortgage" data-i18n="nav.faq">FAQ</a>
             <a class="nav__link" href="#contact" data-i18n="nav.contact">Контакты</a>
             <div class="nav__mobile-cta">
               <a class="header__phone" href="tel:+74950184729">+7 (495) 018-47-29</a>
@@ -239,7 +239,7 @@
                   <div class="property-card__top">
                     <p class="property-card__loc">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                      Хамовники
+                      <span data-i18n="loc.khamovniki">Хамовники</span>
                     </p>
                     <div class="property-card__price">
                       <span class="property-card__price-num">18,9</span>
@@ -284,7 +284,7 @@
                   <div class="property-card__top">
                     <p class="property-card__loc">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                      Пресненский
+                      <span data-i18n="loc.presnensky">Пресненский</span>
                     </p>
                     <div class="property-card__price">
                       <span class="property-card__price-num">42,5</span>
@@ -329,7 +329,7 @@
                   <div class="property-card__top">
                     <p class="property-card__loc">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                      Раменки
+                      <span data-i18n="loc.ramenki">Раменки</span>
                     </p>
                     <div class="property-card__price">
                       <span class="property-card__price-num">24,2</span>
@@ -374,7 +374,7 @@
                   <div class="property-card__top">
                     <p class="property-card__loc">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                      Сколково
+                      <span data-i18n="loc.skolkovo">Сколково</span>
                     </p>
                     <div class="property-card__price">
                       <span class="property-card__price-num">56,0</span>
@@ -421,7 +421,7 @@
                   <img src="assets/images/property-1.jpg" alt="Жилой квартал Хамовников" loading="lazy" width="640" height="480" />
                 </div>
                 <div class="district-card__body">
-                  <h3 class="district-card__name">Хамовники</h3>
+                  <h3 class="district-card__name" data-i18n="districts.d1.name">Хамовники</h3>
                   <p class="district-card__for" data-i18n="districts.d1.for">Для тех, кто хочет центр без суеты Тверской: парки, школы, статусная вторичка и новостройки.</p>
                   <p class="district-card__price" data-i18n="districts.d1.price">от 18 млн ₽ · 2-комн.</p>
                   <a class="district-card__cta" href="#properties" data-filter-location="center" data-prefill-message="Интересует Хамовники" data-i18n="districts.view">Смотреть объекты →</a>
@@ -432,7 +432,7 @@
                   <img src="assets/images/property-2.jpg" alt="Пресненский район и виды на Сити" loading="lazy" width="640" height="400" />
                 </div>
                 <div class="district-card__body">
-                  <h3 class="district-card__name">Пресненский</h3>
+                  <h3 class="district-card__name" data-i18n="districts.d2.name">Пресненский</h3>
                   <p class="district-card__for" data-i18n="districts.d2.for">Сити, набережная, бизнес и жизнь в одном контуре. Пентхаусы и видовые этажи.</p>
                   <p class="district-card__price" data-i18n="districts.d2.price">от 35 млн ₽ · видовые</p>
                   <a class="district-card__cta" href="#properties" data-filter-location="center" data-prefill-message="Интересует Пресненский / Сити" data-i18n="districts.view">Смотреть объекты →</a>
@@ -443,7 +443,7 @@
                   <img src="assets/images/property-3.jpg" alt="Район Раменки рядом с парком" loading="lazy" width="640" height="400" />
                 </div>
                 <div class="district-card__body">
-                  <h3 class="district-card__name">Раменки</h3>
+                  <h3 class="district-card__name" data-i18n="districts.d3.name">Раменки</h3>
                   <p class="district-card__for" data-i18n="districts.d3.for">Семьи: парк, школы, метро. Много «можно въезжать» с ремонтом.</p>
                   <p class="district-card__price" data-i18n="districts.d3.price">от 20 млн ₽ · 3-комн.</p>
                   <a class="district-card__cta" href="#properties" data-filter-location="west" data-prefill-message="Интересуют Раменки, семья" data-i18n="districts.view">Смотреть объекты →</a>
@@ -454,7 +454,7 @@
                   <img src="assets/images/property-4.jpg" alt="Таунхаусы и дома в Сколково" loading="lazy" width="800" height="420" />
                 </div>
                 <div class="district-card__body">
-                  <h3 class="district-card__name">Сколково</h3>
+                  <h3 class="district-card__name" data-i18n="districts.d4.name">Сколково</h3>
                   <p class="district-card__for" data-i18n="districts.d4.for">Дома и таунхаусы: двор, тишина, охрана. Для тех, кто вырос из квартиры.</p>
                   <p class="district-card__price" data-i18n="districts.d4.price">от 45 млн ₽ · таунхаус</p>
                   <a class="district-card__cta" href="#properties" data-filter-location="west" data-prefill-message="Интересует Сколково, дом/таунхаус" data-i18n="districts.view">Смотреть объекты →</a>
@@ -748,10 +748,10 @@
                     <div class="reviews-marquee__group">
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-2.jpg" alt="Анна Ковалёва" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-2.jpg" alt="Анна Ковалёва" width="48" height="48" loading="lazy" data-i18n-alt="reviews.n1" />
                           <div class="review-card__who">
                             <div class="review-card__name">
-                              Анна Ковалёва
+                              <span data-i18n="reviews.n1">Анна Ковалёва</span>
                               <span class="review-card__sep">·</span>
                               <span data-i18n="reviews.r1">Квартира в Раменках</span>
                             </div>
@@ -773,10 +773,10 @@
 
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-1.jpg" alt="Дмитрий Орлов" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-1.jpg" alt="Дмитрий Орлов" width="48" height="48" loading="lazy" data-i18n-alt="reviews.n2" />
                           <div class="review-card__who">
                             <div class="review-card__name">
-                              Дмитрий Орлов
+                              <span data-i18n="reviews.n2">Дмитрий Орлов</span>
                               <span class="review-card__sep">·</span>
                               <span data-i18n="reviews.r2">Таунхаус в Сколково</span>
                             </div>
@@ -798,10 +798,10 @@
 
                       <article class="review-card review-card--feed">
                         <div class="review-card__head">
-                          <img class="review-card__avatar" src="assets/images/avatar-3.jpg" alt="Елена Морозова" width="48" height="48" loading="lazy" />
+                          <img class="review-card__avatar" src="assets/images/avatar-3.jpg" alt="Елена Морозова" width="48" height="48" loading="lazy" data-i18n-alt="reviews.n3" />
                           <div class="review-card__who">
                             <div class="review-card__name">
-                              Елена Морозова
+                              <span data-i18n="reviews.n3">Елена Морозова</span>
                               <span class="review-card__sep">·</span>
                               <span data-i18n="reviews.r3">Пентхаус, Пресненский</span>
                             </div>
@@ -893,10 +893,6 @@
                     <a href="https://wa.me/74950184729" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                     <a href="https://t.me/nest_moscow" target="_blank" rel="noopener noreferrer">Telegram</a>
                     <a href="tel:+74950184729" data-i18n="contact.call">Позвонить</a>
-                  </div>
-                  <div class="cta-lead__quiz-prompt">
-                    <p data-i18n="contact.quizPrompt">Не уверены в бюджете или районе?</p>
-                    <button type="button" class="btn btn--ghost" data-open-quiz data-i18n="contact.quizCta">Пройти квиз за 1 минуту</button>
                   </div>
                 </form>
               </div>
@@ -1020,7 +1016,7 @@
             <button type="button" class="quiz__option" data-value="house" data-i18n="quiz.o1c">Дом / таунхаус</button>
             <button type="button" class="quiz__option" data-value="invest" data-i18n="quiz.o1d">Под инвестиции</button>
           </div>
-          <div class="quiz__nav">
+          <div class="quiz__nav quiz__nav--solo">
             <button type="button" class="btn btn--primary" data-quiz-next data-i18n="quiz.next">Далее</button>
           </div>
         </div>
@@ -1099,14 +1095,14 @@
             </div>
             <div class="quiz__nav">
               <button type="button" class="btn btn--ghost-dark" data-quiz-back data-i18n="quiz.back">Назад</button>
-              <button type="submit" class="btn btn--primary" data-i18n="quiz.submit">Получить подборку</button>
+              <button type="submit" class="btn btn--primary" data-i18n="quiz.submit" id="quiz-submit">Получить подборку</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
-    <script src="i18n.js?v=20260720"></script>
-    <script src="main.js?v=20260720"></script>
+    <script src="i18n.js?v=20260722"></script>
+    <script src="main.js?v=20260722"></script>
   </body>
 </html>

@@ -92,13 +92,17 @@
       "districts.lead":
         "Не «вся Москва», а сильные локации с понятной ликвидностью, школами и повседневной жизнью.",
       "districts.view": "Смотреть объекты →",
+      "districts.d1.name": "Хамовники",
       "districts.d1.for":
         "Для тех, кто хочет центр без суеты Тверской: парки, школы, статусная вторичка и новостройки.",
       "districts.d1.price": "от 18 млн ₽ · 2-комн.",
+      "districts.d2.name": "Пресненский",
       "districts.d2.for": "Сити, набережная, бизнес и жизнь в одном контуре. Пентхаусы и видовые этажи.",
       "districts.d2.price": "от 35 млн ₽ · видовые",
+      "districts.d3.name": "Раменки",
       "districts.d3.for": "Семьи: парк, школы, метро. Много «можно въезжать» с ремонтом.",
       "districts.d3.price": "от 20 млн ₽ · 3-комн.",
+      "districts.d4.name": "Сколково",
       "districts.d4.for": "Дома и таунхаусы: двор, тишина, охрана. Для тех, кто вырос из квартиры.",
       "districts.d4.price": "от 45 млн ₽ · таунхаус",
       "why.eyebrow": "Почему Nest",
@@ -169,16 +173,19 @@
       "reviews.ctaPrimary": "Оставить заявку",
       "reviews.ctaSecondary": "Все отзывы",
       "reviews.ratingLabel": "4.9 · на основе отзывов клиентов",
+      "reviews.n1": "Анна Ковалёва",
       "reviews.t1":
         "Полгода сами смотрели объявления — устали от хаоса. С Nest за две недели вышли на квартиру, где наконец спокойно спим.",
       "reviews.r1": "Квартира в Раменках",
       "reviews.time1": "2 недели назад",
       "reviews.m1": "14 дней до задатка · семейная ипотека",
+      "reviews.n2": "Дмитрий Орлов",
       "reviews.t2":
         "Брокер с первого звонка зафиксировал: школа, парковка, двор без машин. Не торопил с решением — это редкость.",
       "reviews.r2": "Таунхаус в Сколково",
       "reviews.time2": "3 недели назад",
       "reviews.m2": "21 день · торг −1,8 млн ₽",
+      "reviews.n3": "Елена Морозова",
       "reviews.t3":
         "Документы разобрали до задатка, ипотека прошла без сюрпризов. Чувствуется, что сделками такого уровня занимаются постоянно.",
       "reviews.r3": "Пентхаус, Пресненский",
@@ -273,6 +280,9 @@
       "quiz.next": "Далее",
       "quiz.back": "Назад",
       "quiz.submit": "Получить подборку",
+      "quiz.sending": "Отправляем…",
+      "quiz.sent": "Заявка отправлена",
+      "cursor.view": "Смотреть",
       "quiz.ok": "Принято",
       "quiz.okText": "Брокер свяжется в течение 15 минут и уточнит детали shortlist.",
       "quiz.consent": "Согласен на",
@@ -310,6 +320,16 @@
       "propPage.spec.plot": "Участок",
       "propPage.spec.levels": "Этажность",
       "propPage.mln": "млн ₽",
+      "propPage.val.p1.floor": "14 из 22",
+      "propPage.val.p2.floor": "28 из 30",
+      "propPage.val.p2.parking": "2 места",
+      "propPage.val.p3.floor": "7 из 16",
+      "propPage.val.p3.district": "Раменки",
+      "propPage.val.p4.plot": "4 сот.",
+      "loc.khamovniki": "Хамовники",
+      "loc.presnensky": "Пресненский",
+      "loc.ramenki": "Раменки",
+      "loc.skolkovo": "Сколково",
       "p1.docTitle": "2-комн. с видовой кухней, Хамовники — Nest",
       "p1.badge": "Новостройка · документы проверены",
       "p1.title": "2-комн. с видовой кухней",
@@ -483,13 +503,17 @@
       "districts.lead":
         "Not “all of Moscow” — strong locations with liquidity, schools, and everyday life.",
       "districts.view": "View homes →",
+      "districts.d1.name": "Khamovniki",
       "districts.d1.for":
         "For those who want the center without Tverskaya noise: parks, schools, premium resale and new builds.",
       "districts.d1.price": "from 18M ₽ · 2-bed",
+      "districts.d2.name": "Presnensky",
       "districts.d2.for": "City skyline, embankment, business and life in one place. Penthouses and view floors.",
       "districts.d2.price": "from 35M ₽ · view units",
+      "districts.d3.name": "Ramenki",
       "districts.d3.for": "Families: park, schools, metro. Many move-in ready homes with renovation.",
       "districts.d3.price": "from 20M ₽ · 3-bed",
+      "districts.d4.name": "Skolkovo",
       "districts.d4.for": "Houses and townhouses: yard, quiet, security. For those who outgrew apartments.",
       "districts.d4.price": "from 45M ₽ · townhouse",
       "why.eyebrow": "Why Nest",
@@ -560,16 +584,19 @@
       "reviews.ctaPrimary": "Leave a request",
       "reviews.ctaSecondary": "All reviews",
       "reviews.ratingLabel": "4.9 · based on client reviews",
+      "reviews.n1": "Anna Kovaleva",
       "reviews.t1":
         "We spent half a year browsing listings — exhausted by the chaos. With Nest we found a place we can finally sleep in within two weeks.",
       "reviews.r1": "Apartment in Ramenki",
       "reviews.time1": "2 weeks ago",
       "reviews.m1": "14 days to deposit · family mortgage",
+      "reviews.n2": "Dmitry Orlov",
       "reviews.t2":
         "From the first call the broker locked: school, parking, car-free yard. No pressure to decide — rare.",
       "reviews.r2": "Townhouse in Skolkovo",
       "reviews.time2": "3 weeks ago",
       "reviews.m2": "21 days · negotiated −1.8M ₽",
+      "reviews.n3": "Elena Morozova",
       "reviews.t3":
         "Docs cleared before the deposit, mortgage went smoothly. You feel they do this level of deals constantly.",
       "reviews.r3": "Penthouse, Presnensky",
@@ -664,6 +691,9 @@
       "quiz.next": "Next",
       "quiz.back": "Back",
       "quiz.submit": "Get a shortlist",
+      "quiz.sending": "Sending…",
+      "quiz.sent": "Request sent",
+      "cursor.view": "View",
       "quiz.ok": "Received",
       "quiz.okText": "A broker will contact you within 15 minutes to refine the shortlist.",
       "quiz.consent": "I agree to",
@@ -701,6 +731,16 @@
       "propPage.spec.plot": "Plot",
       "propPage.spec.levels": "Floors",
       "propPage.mln": "M ₽",
+      "propPage.val.p1.floor": "14 of 22",
+      "propPage.val.p2.floor": "28 of 30",
+      "propPage.val.p2.parking": "2 spots",
+      "propPage.val.p3.floor": "7 of 16",
+      "propPage.val.p3.district": "Ramenki",
+      "propPage.val.p4.plot": "4 ares",
+      "loc.khamovniki": "Khamovniki",
+      "loc.presnensky": "Presnensky",
+      "loc.ramenki": "Ramenki",
+      "loc.skolkovo": "Skolkovo",
       "p1.docTitle": "2-bed with view kitchen, Khamovniki — Nest",
       "p1.badge": "New build · documents verified",
       "p1.title": "2-bed with view kitchen",
@@ -861,6 +901,9 @@
     });
     root.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
       el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+    });
+    root.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      el.setAttribute("alt", t(el.getAttribute("data-i18n-alt")));
     });
     // document title: property pages use data-i18n on <title>, home uses doc.title
     var titleNode = document.querySelector("title[data-i18n]");

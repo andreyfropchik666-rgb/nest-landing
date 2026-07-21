@@ -127,9 +127,18 @@
       { passive: true }
     );
 
+    function updateCursorLabel() {
+      if (!cursorLabel) return;
+      var i18n = window.NestI18n;
+      cursorLabel.textContent = i18n ? i18n.t("cursor.view") : "Смотреть";
+    }
+    updateCursorLabel();
+    window.addEventListener("nest:lang", updateCursorLabel);
+
     function setCursorHover(on, card) {
       document.body.classList.toggle("cursor-hover", on && !card);
       document.body.classList.toggle("cursor-hover-card", on && !!card);
+      if (on && card) updateCursorLabel();
     }
 
     document.addEventListener(
@@ -218,22 +227,36 @@
   var navLinks = document.querySelectorAll(".nav__link[href^='#']");
   var sections = [];
   navLinks.forEach(function (link) {
-    var id = link.getAttribute("href").slice(1);
+    var href = link.getAttribute("href") || "";
+    if (href.charAt(0) !== "#") return;
+    var id = href.slice(1);
+    if (!id) return;
     var el = document.getElementById(id);
     if (el) sections.push({ id: id, el: el, link: link });
   });
 
+  var spyRaf = 0;
   function updateSpy() {
     if (!sections.length) return;
-    var y = window.scrollY + 120;
+    var headerH = (header && header.offsetHeight) || 64;
+    /* Activate when section top crosses just under the sticky header */
+    var line = headerH + 28;
     var current = sections[0];
     sections.forEach(function (s) {
-      if (s.el.offsetTop <= y) current = s;
+      var top = s.el.getBoundingClientRect().top;
+      if (top <= line) current = s;
     });
+    /* Near bottom of page: force last nav target (contacts) */
+    var doc = document.documentElement;
+    var maxScroll = Math.max(0, doc.scrollHeight - window.innerHeight);
+    if (maxScroll > 0 && window.scrollY >= maxScroll - 8) {
+      current = sections[sections.length - 1];
+    }
     sections.forEach(function (s) {
-      s.link.classList.toggle("is-active", s === current);
+      var on = s === current;
+      s.link.classList.toggle("is-active", on);
       var dot = s.link.querySelector(".nav__dot");
-      if (s === current) {
+      if (on) {
         if (!dot) {
           var d = document.createElement("span");
           d.className = "nav__dot";
@@ -245,7 +268,15 @@
       }
     });
   }
-  window.addEventListener("scroll", updateSpy, { passive: true });
+  function updateSpyRaf() {
+    if (spyRaf) return;
+    spyRaf = requestAnimationFrame(function () {
+      spyRaf = 0;
+      updateSpy();
+    });
+  }
+  window.addEventListener("scroll", updateSpyRaf, { passive: true });
+  window.addEventListener("resize", updateSpyRaf, { passive: true });
   updateSpy();
 
   /* ========== REVEAL ========== */
@@ -513,11 +544,19 @@
       }
 
       var btn = formEl.querySelector('button[type="submit"]');
-      var original = btn ? btn.textContent : "";
+      var original = "";
       if (btn) {
+        /* Prefer i18n key so restore always has full label (not clipped text) */
+        var submitKey = btn.getAttribute("data-i18n");
+        original =
+          (i18n && submitKey && i18n.t(submitKey)) ||
+          btn.getAttribute("data-label") ||
+          btn.textContent ||
+          "";
+        btn.setAttribute("data-label", original);
         btn.classList.add("is-loading");
         btn.disabled = true;
-        btn.textContent = "Отправляем…";
+        btn.textContent = i18n ? i18n.t("quiz.sending") : "Отправляем…";
       }
 
       var fd = new FormData(formEl);
@@ -535,11 +574,15 @@
             formEl.style.display = "none";
             success.classList.add("is-visible");
           } else if (btn) {
-            btn.textContent = "Заявка отправлена";
+            btn.textContent = i18n ? i18n.t("quiz.sent") : "Заявка отправлена";
             showToast(window.NestI18n ? window.NestI18n.t("toast.lead") : "Заявка принята");
             setTimeout(function () {
               formEl.reset();
-              btn.textContent = original;
+              var key = btn.getAttribute("data-i18n");
+              btn.textContent =
+                (window.NestI18n && key && window.NestI18n.t(key)) ||
+                btn.getAttribute("data-label") ||
+                original;
               btn.disabled = false;
               btn.classList.remove("is-loading");
             }, 2800);
@@ -554,7 +597,11 @@
         .catch(function () {
           showToast("Не удалось отправить. Позвоните нам");
           if (btn) {
-            btn.textContent = original;
+            var key = btn.getAttribute("data-i18n");
+            btn.textContent =
+              (window.NestI18n && key && window.NestI18n.t(key)) ||
+              btn.getAttribute("data-label") ||
+              original;
             btn.disabled = false;
             btn.classList.remove("is-loading");
           }
@@ -747,6 +794,28 @@
     if (locationSelect) locationSelect.value = f.location || "";
     if (typeSelect) typeSelect.value = f.type || "";
     if (priceSelect) priceSelect.value = f.price || "";
+  }
+
+  /* Hover/focus “selected” state for catalog cards (matches featured look) */
+  if (finePointer && cards.length) {
+    cards.forEach(function (card) {
+      card.addEventListener("mouseenter", function () {
+        cards.forEach(function (c) {
+          c.classList.toggle("is-active", c === card);
+        });
+      });
+      card.addEventListener("mouseleave", function () {
+        card.classList.remove("is-active");
+      });
+      card.addEventListener("focusin", function () {
+        cards.forEach(function (c) {
+          c.classList.toggle("is-active", c === card);
+        });
+      });
+      card.addEventListener("focusout", function (e) {
+        if (!card.contains(e.relatedTarget)) card.classList.remove("is-active");
+      });
+    });
   }
 
   if (cards.length) {
