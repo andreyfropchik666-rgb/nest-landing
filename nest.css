@@ -3221,6 +3221,10 @@ body.page-property .header .menu-toggle span::after {
     align-items: flex-start;
   }
 
+  .footer__legal {
+    justify-content: flex-start;
+  }
+
   .cta-lead__row {
     grid-template-columns: 1fr;
   }
@@ -5577,6 +5581,51 @@ body.page-property .header {
   list-style: disc;
   padding-left: 1.25rem;
   margin-bottom: 1rem;
+}
+
+/* Body links only — never restyle .btn (primary is ink-on-ink otherwise) */
+.legal-page a:not(.btn) {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-color: rgba(17, 19, 24, 0.28);
+  transition: text-decoration-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .legal-page a:not(.btn):hover {
+    color: var(--accent-deep);
+    text-decoration-color: currentColor;
+  }
+}
+
+.legal-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+.legal-page__actions .btn {
+  text-decoration: none;
+}
+
+.legal-page__actions .btn--primary {
+  color: #fff;
+}
+
+.legal-page__actions .btn--ghost {
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--line-strong);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem 1.15rem;
 }
 
 /* ========== REVEAL ========== */
